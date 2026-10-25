@@ -1,0 +1,111 @@
+/**
+ * The {@link Building} footprints packaged for 3D rendering, plus the counts a viewer
+ * needs in order to know how much of the skyline is real.
+ *
+ * Like {@link MapNetwork}, the geometry travels as one JSON string of positional arrays
+ * rather than as thousands of typed objects, because the payload is almost entirely
+ * coordinates and repeating field names across ~85,000 vertices would roughly double it.
+ *
+ * The height counts are not decoration. This extract carries an explicit `height` tag on
+ * only a handful of buildings, so a client that drew the extrusions without surfacing
+ * {@link MapBuildings#estimatedHeightCount} would be presenting an inferred skyline as a
+ * surveyed one. The split is returned alongside the geometry so the two cannot drift
+ * apart or be rendered without it.
+ */
+type MapBuildings {
+
+  /**
+   * One entry per building, as a JSON array of positional arrays:
+   * `[heightMeters, buildingKind, heightConfidence, isNotableLandmark, name,
+   * [[lat, lon], ...]]`, where `isNotableLandmark` is 1 or 0 and `name` is an empty
+   * string when the building is unnamed.
+   *
+   * `heightConfidence` is a three-way code rather than an estimated/not boolean —
+   * 0 for a measured `height` tag, 1 for a storey count times an assumed storey
+   * height, 2 for a per-class default. The middle case is much better evidence than
+   * the last and collapsing them would throw away the distinction the client needs in
+   * order to shade the scene honestly.
+   *
+   * Rings are closed (first vertex repeated last) and ordered as latitude/longitude to
+   * match {@link RoadSegment#geometry}; a GeoJSON client must swap the pair. Coordinates
+   * are rounded to six decimal places — about 0.1 m — rather than the five used by
+   * {@link MapNetwork#linesJson}, because a wall being extruded upward shows a
+   * metre of error far more plainly than a road centreline does.
+   */
+  buildingsJson: !string
+
+  /**
+   * Number of buildings in {@link MapBuildings#buildingsJson}. Lower than the total
+   * {@link Building} row count whenever a `minAreaSquareMeters` floor was applied.
+   */
+  buildingCount: int
+
+  /**
+   * Total {@link Building} rows in the database, so a client can state how many
+   * buildings a footprint-area filter excluded instead of silently showing fewer.
+   */
+  totalBuildingCount: int
+
+  /**
+   * Buildings whose {@link Building#heightMeters} was inferred — from a storey count or
+   * from a per-class default. In this extract this is very nearly all of them.
+   */
+  estimatedHeightCount: int
+
+  /**
+   * Buildings whose height was read from an explicit OpenStreetMap `height` tag. These
+   * are the only extrusions that represent a measured dimension.
+   */
+  realHeightCount: int
+
+  /**
+   * Buildings whose height came from `building:levels` multiplied by an assumed storey
+   * height. Counted separately from the per-class defaults because it is the better
+   * class of estimate: the storey count is real evidence, only the metres per storey is
+   * an assumption.
+   */
+  levelsHeightCount: int
+
+  /**
+   * Buildings carrying an OpenStreetMap `name` tag, and therefore labellable.
+   */
+  namedCount: int
+
+  /**
+   * Buildings whose name matches a loaded {@link Hospital} or {@link Venue}, flagged via
+   * {@link Building#isNotableLandmark}. These are the structures a viewer orients by.
+   */
+  landmarkCount: int
+
+  /**
+   * Height of the tallest building in the payload, in metres — the scale a client should
+   * use when colouring extrusions by height.
+   */
+  tallestMeters: double
+
+  /**
+   * Attribution text that must be displayed wherever this data is drawn, as required by
+   * the Open Database Licence.
+   */
+  attribution: !string
+
+  /**
+   * Southern edge of the footprints in this payload, for fitting the initial camera.
+   */
+  bboxSouth: double
+
+  /**
+   * Northern edge of the footprints in this payload.
+   */
+  bboxNorth: double
+
+  /**
+   * Western edge of the footprints in this payload.
+   */
+  bboxWest: double
+
+  /**
+   * Eastern edge of the footprints in this payload.
+   */
+  bboxEast: double
+}

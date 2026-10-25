@@ -1,0 +1,109 @@
+/**
+ * The complete answer to "an emergency happened here — what happens next", computed for
+ * one incident location under one {@link Scenario}.
+ *
+ * A response is two distinct drives, not one: a unit must first reach the patient from
+ * wherever it is stationed, and only then can it carry the patient to a hospital. These
+ * legs traverse the network in opposite directions, which matters on the isthmus
+ * because Madison's one-way couplets mean the fast way in is often not the reverse of
+ * the fast way out. {@link ResponsePlan#responseLeg} and
+ * {@link ResponsePlan#transportLeg} are therefore solved separately and reported
+ * separately, with {@link ResponsePlan#totalSeconds} as their sum.
+ *
+ * The plan also reports what it could *not* do — see {@link ResponsePlan#warnings} and
+ * {@link HospitalEta#isReachable} — so a scenario that severs the network produces a
+ * visible failure rather than a plausible-looking wrong answer.
+ */
+type ResponsePlan {
+
+  /**
+   * Id of the {@link Scenario} the plan was computed under.
+   */
+  scenarioId: string
+
+  /**
+   * Display name of that scenario.
+   */
+  scenarioName: string
+
+  /**
+   * Requested incident latitude, as supplied by the caller.
+   */
+  incidentLatitude: double
+
+  /**
+   * Requested incident longitude, as supplied by the caller.
+   */
+  incidentLongitude: double
+
+  /**
+   * The {@link RoadNode} the incident was snapped to. Routing happens between graph
+   * vertices, so the reported times begin and end here rather than at the clicked
+   * point.
+   */
+  incidentNodeId: string
+
+  /**
+   * Metres from the requested point to {@link ResponsePlan#incidentNodeId}. A large
+   * value means the click landed far from any modelled road — in a lake, or inside a
+   * block interior — and the result should be read with that in mind.
+   */
+  incidentSnapMeters: double
+
+  /**
+   * Id of the {@link EmsStation} whose unit reaches the incident soonest.
+   */
+  stationId: string
+
+  /**
+   * Name of that responding station.
+   */
+  stationName: string
+
+  /**
+   * Id of the chosen destination {@link Hospital} — the fastest-to-reach facility with
+   * {@link Hospital#isEmergencyDestination} true that the scenario has not diverted.
+   */
+  hospitalId: string
+
+  /**
+   * Name of the chosen destination hospital.
+   */
+  hospitalName: string
+
+  /**
+   * The drive from the responding station to the incident.
+   */
+  responseLeg: RouteLeg
+
+  /**
+   * The drive from the incident to the chosen hospital.
+   */
+  transportLeg: RouteLeg
+
+  /**
+   * Sum of both legs' travel time in seconds. Deliberately excludes dispatch delay,
+   * turnout time and on-scene treatment time, none of which this model has data for;
+   * it is drive time only.
+   */
+  totalSeconds: double
+
+  /**
+   * Every emergency-capable hospital ranked by travel time from the incident, including
+   * unreachable and scenario-excluded ones.
+   */
+  candidateHospitals: [HospitalEta]
+
+  /**
+   * Every station ranked by time to reach the incident, so an analyst can see the
+   * second-best responder as well as the chosen one.
+   */
+  candidateStations: [StationEta]
+
+  /**
+   * Caveats that apply to this specific result — unreachable destinations, a distant
+   * snap, or a route whose timing rests largely on estimated speeds. Intended to be
+   * surfaced in the UI, not swallowed.
+   */
+  warnings: [string]
+}

@@ -1,0 +1,67 @@
+/**
+ * A fire station or dedicated ambulance station inside the ISTHMUS study area,
+ * extracted from OpenStreetMap. These are the origins from which a response leg is
+ * measured — in Madison, emergency medical response is delivered by the Madison Fire
+ * Department, so fire stations are EMS origins rather than a separate service.
+ *
+ * Only stations whose point falls inside the download bounding box appear here. The
+ * Madison Fire Department operates considerably more stations across the wider city;
+ * their absence reflects the deliberately tight study area, not a failed extract.
+ */
+entity type EmsStation schema name 'ISTH_EMS_STATION' {
+
+  /**
+   * Street address assembled from the OpenStreetMap `addr:*` tags; null when untagged.
+   */
+  address: string
+
+  /**
+   * WGS84 latitude of the station (centroid when mapped as a building footprint).
+   */
+  latitude: !double
+
+  /**
+   * WGS84 longitude of the station (centroid when mapped as a building footprint).
+   */
+  longitude: !double
+
+  /**
+   * The graph vertex this station attaches to, by nearest-neighbour search over the
+   * retained road network. Response legs are computed from here.
+   */
+  nearestNode: RoadNode
+
+  /**
+   * Metres from the station point to {@link EmsStation#nearestNode}; a snap-quality
+   * signal, as on {@link Hospital#snapDistanceMeters}.
+   */
+  snapDistanceMeters: double
+
+  /**
+   * "fire_station" for `amenity=fire_station`, or "ems_station" for
+   * `emergency=ambulance_station`. Both are treated as response origins.
+   */
+  stationKind: string
+
+  /**
+   * Operating agency from the OpenStreetMap `operator` tag. Distinguishes Madison Fire
+   * Department houses from the separate Shorewood Hills department and from private
+   * ambulance operators.
+   */
+  operator: string
+
+  /**
+   * Whether the upstream OpenStreetMap object was a node, way or relation.
+   */
+  osmType: string
+
+  /**
+   * Upstream OpenStreetMap object id, for provenance and future merges.
+   */
+  osmId: string
+
+  /**
+   * Provenance string, e.g. "OpenStreetMap way/12345".
+   */
+  source: !string
+}

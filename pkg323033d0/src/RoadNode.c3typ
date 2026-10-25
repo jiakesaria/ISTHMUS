@@ -1,0 +1,57 @@
+/**
+ * A single vertex in the ISTHMUS drivable road graph — almost always a real street
+ * intersection, but also the endpoint of a dead-end way.
+ *
+ * Nodes are derived 1:1 from OpenStreetMap nodes that are shared by two or more
+ * drivable ways (or terminate one). Only nodes inside the largest strongly-connected
+ * component of the directed graph are retained, which guarantees that any
+ * {@link RoadNode} can reach any other — a precondition for routing that never
+ * returns "unreachable" for a legitimate address.
+ *
+ * Coordinates are stored as plain doubles rather than a platform geospatial type
+ * because the consuming Leaflet map wants raw numbers and all distance math here is
+ * haversine; no spatial joins are required.
+ */
+entity type RoadNode schema name 'ISTH_ROAD_NODE' {
+
+  /**
+   * WGS84 latitude in decimal degrees, as published by OpenStreetMap.
+   */
+  latitude: !double
+
+  /**
+   * WGS84 longitude in decimal degrees, as published by OpenStreetMap.
+   */
+  longitude: !double
+
+  /**
+   * The upstream OpenStreetMap node id this vertex was derived from. Retained so a
+   * future re-extract can merge against existing rows instead of replacing them, and
+   * so any coordinate can be traced back to openstreetmap.org/node/<osmNodeId>.
+   */
+  osmNodeId: string
+
+  /**
+   * True when this node falls inside the core analysis bounding box rather than the
+   * ~1 km download buffer around it. The buffer exists so that routes near the edge of
+   * the study area are not clipped into artificial dead-ends; buffer nodes are real and
+   * routable but are not treated as part of the modeled city.
+   */
+  inCoreArea: boolean
+
+  /**
+   * Provenance string, e.g. "OpenStreetMap node/12345". Every record in this package
+   * carries a source; nothing here is synthesized.
+   */
+  source: !string
+
+  /**
+   * Directed segments leaving this node. Matches {@link RoadSegment#fromNode}.
+   */
+  outboundSegments: [RoadSegment](fromNode)
+
+  /**
+   * Directed segments arriving at this node. Matches {@link RoadSegment#toNode}.
+   */
+  inboundSegments: [RoadSegment](toNode)
+}

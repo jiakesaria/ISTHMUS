@@ -1,0 +1,12 @@
+[
+ {
+  "id": "SCN_baseline",
+  "name": "Baseline — nothing goes wrong",
+  "scenarioKind": "baseline",
+  "isBaseline": true,
+  "description": "The undegraded isthmus network: every extracted road open, every emergency department receiving, no event crowds. This is the reference every other scenario is measured against — a road only 'matters' insofar as closing it moves response times away from these numbers.",
+  "ambulanceSpeedFactor": 1.15,
+  "source": "Derived entirely from the OpenStreetMap extract recorded in OsmDataLoad LOAD_osm_isthmus_v1. Carries zero overlays, so it adds no assumptions beyond the ambulanceSpeedFactor noted below.",
+  "notes": "ESTIMATED VALUE: ambulanceSpeedFactor is set to 1.15, representing an emergency vehicle running lights and siren at roughly 15% above posted speed. This is a modelling assumption, not a measurement — no Madison Fire Department response telemetry is loaded in this model. Combined with the fact that 5506 of 8032 directed segments have speeds estimated from road class rather than read from an OpenStreetMap maxspeed tag, absolute travel times from this scenario should be read as comparative rather than predictive. Set the factor to 1.0 to route at plain posted/estimated speed."
+ }
+]

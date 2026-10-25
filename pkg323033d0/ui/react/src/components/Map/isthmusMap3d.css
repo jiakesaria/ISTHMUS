@@ -1,0 +1,284 @@
+/*
+ * ISTHMUS 3D scene styling.
+ *
+ * Markers are HTML elements attached to `maplibregl.Marker` rather than `symbol`
+ * layers, because rendering text or sprites in GL would require a glyph and sprite
+ * server this app deliberately does not run. CSS shapes also let a facility's role be
+ * read at a glance — and crucially, role is carried by *shape* as well as colour, so
+ * the map survives colour-vision differences and the dim basemap.
+ *
+ * Everything here is tuned for a dark scene: the extrusions and route glows are the
+ * bright elements, so markers need white borders to stay legible against them.
+ */
+
+.isthmus-map3d {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: #070d16;
+}
+
+.isthmus-map3d__canvas {
+  position: absolute;
+  inset: 0;
+}
+
+.isthmus-map3d--clickable .maplibregl-canvas {
+  cursor: crosshair;
+}
+
+/* MapLibre's own chrome, darkened to match rather than left as light-mode boxes. */
+.isthmus-map3d .maplibregl-ctrl-group {
+  background: rgb(10 18 28 / 86%);
+  border: 1px solid rgb(255 255 255 / 12%);
+}
+
+.isthmus-map3d .maplibregl-ctrl-group button + button {
+  border-top: 1px solid rgb(255 255 255 / 12%);
+}
+
+.isthmus-map3d .maplibregl-ctrl-group button .maplibregl-ctrl-icon {
+  filter: invert(1) brightness(1.6);
+}
+
+.isthmus-map3d .maplibregl-ctrl-attrib {
+  background: rgb(10 18 28 / 80%);
+  color: #cbd5e1;
+  font-size: 10px;
+}
+
+.isthmus-map3d .maplibregl-ctrl-attrib a {
+  color: #93c5fd;
+}
+
+.isthmus-map3d .maplibregl-ctrl-scale {
+  background: rgb(10 18 28 / 70%);
+  border-color: rgb(255 255 255 / 35%);
+  color: #cbd5e1;
+}
+
+/* --- the modelled-drive-time readout during playback --- */
+
+.isthmus-map3d__clock {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  padding: 6px 10px;
+  border: 1px solid rgb(255 255 255 / 14%);
+  border-radius: 6px;
+  background: rgb(8 14 22 / 82%);
+  backdrop-filter: blur(6px);
+  pointer-events: none;
+}
+
+.isthmus-map3d__clock-label {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: #94a3b8;
+}
+
+.isthmus-map3d__clock-value {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.1;
+  color: #e2e8f0;
+  font-variant-numeric: tabular-nums;
+}
+
+/* --- WebGL failure notice --- */
+
+.isthmus-map3d__error {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 24px;
+  text-align: center;
+  background: rgb(7 13 22 / 94%);
+  color: #e2e8f0;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.isthmus-map3d__error-detail {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 11px;
+  color: #fca5a5;
+  max-width: 460px;
+  overflow-wrap: anywhere;
+}
+
+/* --- facility markers ---
+ *
+ * Intentionally NOT scoped under `.isthmus-map3d`: the sidebar legends on the City
+ * Model and Dispatch pages render the same classes outside the map container, and
+ * scoping them here would leave those swatches unstyled. Each variant therefore also
+ * carries its own default size, so a legend swatch is correct without inline styles.
+ */
+
+.isthmus-marker {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  border-radius: 9999px;
+  box-shadow: 0 2px 8px rgb(0 0 0 / 55%);
+  font-weight: 700;
+  line-height: 1;
+  color: #fff;
+  cursor: pointer;
+}
+
+/* Emergency department — a valid ambulance destination. */
+.isthmus-marker--ed {
+  width: 22px;
+  height: 22px;
+  background: #ff4d4d;
+  border: 2px solid #fff;
+  font-size: 13px;
+}
+
+/* Clinic — present in the data but NOT an ambulance destination. Deliberately
+   hollow and muted so it can never be mistaken for a hospital. */
+.isthmus-marker--clinic {
+  width: 11px;
+  height: 11px;
+  background: rgb(255 255 255 / 85%);
+  border: 2px solid #b98c8c;
+  box-shadow: none;
+}
+
+/* Fire / ambulance station — a response origin. Square to separate it by shape as
+   well as colour, for colour-vision safety. */
+.isthmus-marker--station {
+  width: 18px;
+  height: 18px;
+  border-radius: 3px;
+  background: #2ea8ff;
+  border: 2px solid #fff;
+  font-size: 11px;
+}
+
+/* Stadium / arena — a game-day crowd generator. */
+.isthmus-marker--venue {
+  width: 18px;
+  height: 18px;
+  border-radius: 3px;
+  background: #d79b14;
+  border: 2px solid #fff;
+  font-size: 11px;
+  transform: rotate(45deg);
+}
+
+.isthmus-marker--venue > span {
+  transform: rotate(-45deg);
+}
+
+/* Civic landmark, not an event generator. */
+.isthmus-marker--landmark {
+  width: 14px;
+  height: 14px;
+  background: #8c9aa8;
+  border: 2px solid #fff;
+  font-size: 9px;
+}
+
+/* The incident point. Animated so the user can always find where they clicked. */
+.isthmus-marker--incident {
+  width: 20px;
+  height: 20px;
+  background: #0b1220;
+  border: 3px solid #ffd166;
+  box-shadow: 0 0 0 0 rgb(255 209 102 / 70%);
+  animation: isthmus3d-pulse 1.8s ease-out infinite;
+}
+
+@keyframes isthmus3d-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgb(255 209 102 / 70%);
+  }
+  70% {
+    box-shadow: 0 0 0 16px rgb(255 209 102 / 0%);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgb(255 209 102 / 0%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .isthmus-map3d .isthmus-marker--incident {
+    animation: none;
+  }
+}
+
+/* Selected responder / destination get a ring so the chosen pair stands out from
+   the other candidates. */
+.isthmus-map3d .isthmus-marker--chosen {
+  outline: 3px solid #ffd166;
+  outline-offset: 2px;
+}
+
+/* --- popups, restyled dark --- */
+
+.isthmus-map3d .maplibregl-popup-content {
+  padding: 9px 11px;
+  border: 1px solid rgb(255 255 255 / 14%);
+  border-radius: 7px;
+  background: rgb(10 17 27 / 96%);
+  color: #e2e8f0;
+  box-shadow: 0 8px 28px rgb(0 0 0 / 55%);
+}
+
+.isthmus-map3d .maplibregl-popup-tip {
+  border-top-color: rgb(10 17 27 / 96%);
+  border-bottom-color: rgb(10 17 27 / 96%);
+}
+
+.isthmus-map3d .maplibregl-popup-close-button {
+  color: #94a3b8;
+  font-size: 15px;
+  padding: 0 5px;
+}
+
+.isthmus-popup h4 {
+  margin: 0 0 4px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.isthmus-popup dl {
+  margin: 0;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1px 8px;
+  font-size: 11px;
+}
+
+.isthmus-popup dt {
+  color: #94a3b8;
+  white-space: nowrap;
+}
+
+.isthmus-popup dd {
+  margin: 0;
+}
+
+.isthmus-popup .isthmus-popup__caveat {
+  margin: 5px 0 0;
+  padding-top: 4px;
+  border-top: 1px solid rgb(255 255 255 / 14%);
+  font-size: 10px;
+  color: #fcd34d;
+  max-width: 260px;
+}

@@ -1,0 +1,22 @@
+[
+ {
+  "id": "LOAD_osm_isthmus_v1",
+  "name": "OSM isthmus extract v1",
+  "sourceApi": "https://api.openstreetmap.org/api/0.6/map",
+  "sourceLicense": "ODbL 1.0 - (c) OpenStreetMap contributors",
+  "bboxSouth": 43.045,
+  "bboxNorth": 43.095,
+  "bboxWest": -89.455,
+  "bboxEast": -89.36,
+  "coreBboxSouth": 43.052,
+  "coreBboxNorth": 43.088,
+  "coreBboxWest": -89.445,
+  "coreBboxEast": -89.37,
+  "rawTileCount": 24,
+  "rawBytes": 80009015,
+  "rawChecksumSha256": "681fd755ef0464b72aa3a61f2d0452755b6688ec73dd0d4ab13a1afaf9c509e3",
+  "rawPath": "isthmus-etl/raw",
+  "recordCounts": "{\"RoadNode\":3432,\"RoadSegment\":8032,\"Hospital\":21,\"EmsStation\":6,\"Venue\":6}",
+  "notes": "Drivable highways only; split at intersections; largest strongly-connected component retained. Speeds use OSM maxspeed when tagged, else a per-road-class US urban default flagged via speedIsEstimated/speedSource. Hospital clinical capability (trauma level, stroke/cath/peds) is NOT in OSM and is left unset."
+ }
+]

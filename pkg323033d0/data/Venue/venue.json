@@ -1,0 +1,74 @@
+[
+ {
+  "id": "VEN_breese_stevens_field",
+  "name": "Breese Stevens Field",
+  "latitude": 43.083277,
+  "longitude": -89.373116,
+  "osmType": "way",
+  "osmId": "425596801",
+  "source": "OpenStreetMap way/425596801",
+  "venueKind": "venue",
+  "nearestNode": "N7802423095",
+  "snapDistanceMeters": 71.7
+ },
+ {
+  "id": "VEN_camp_randall_stadium",
+  "name": "Camp Randall Stadium",
+  "latitude": 43.06994,
+  "longitude": -89.412753,
+  "osmType": "way",
+  "osmId": "1542809955",
+  "source": "OpenStreetMap way/1542809955",
+  "venueKind": "venue",
+  "nearestNode": "N3511616042",
+  "snapDistanceMeters": 99.5
+ },
+ {
+  "id": "VEN_kohl_center",
+  "name": "Kohl Center",
+  "latitude": 43.069285,
+  "longitude": -89.396834,
+  "osmType": "way",
+  "osmId": "49982700",
+  "source": "OpenStreetMap way/49982700",
+  "venueKind": "venue",
+  "nearestNode": "N2988966639",
+  "snapDistanceMeters": 70.9
+ },
+ {
+  "id": "VEN_labahn_arena",
+  "name": "LaBahn Arena",
+  "latitude": 43.069854,
+  "longitude": -89.398653,
+  "osmType": "way",
+  "osmId": "193494687",
+  "source": "OpenStreetMap way/193494687",
+  "venueKind": "venue",
+  "nearestNode": "N53611540",
+  "snapDistanceMeters": 126.2
+ },
+ {
+  "id": "VEN_veterans_memorial_coliseum",
+  "name": "Veterans Memorial Coliseum",
+  "latitude": 43.047073,
+  "longitude": -89.378959,
+  "osmType": "way",
+  "osmId": "28773794",
+  "source": "OpenStreetMap way/28773794",
+  "venueKind": "venue",
+  "nearestNode": "N6193788695",
+  "snapDistanceMeters": 67.8
+ },
+ {
+  "id": "VEN_wisconsin_state_capitol",
+  "name": "Wisconsin State Capitol",
+  "latitude": 43.074692,
+  "longitude": -89.384166,
+  "osmType": "way",
+  "osmId": "26720999",
+  "source": "OpenStreetMap way/26720999",
+  "venueKind": "landmark",
+  "nearestNode": "N53332729",
+  "snapDistanceMeters": 121.7
+ }
+]

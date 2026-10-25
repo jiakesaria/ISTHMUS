@@ -1,0 +1,138 @@
+/**
+ * What a {@link Scenario} costs, in minutes of ambulance response, measured against the
+ * baseline.
+ *
+ * A single routed example proves nothing about a city: an incident two streets from a
+ * station is barely affected by a closure across town. So this type reports a scenario's
+ * effect at EVERY modelled intersection in the core area — not a sample — and its
+ * headline number is a RATIO rather than a duration. "Response times are 2.1× baseline"
+ * survives the fact that the underlying minutes rest on estimated speed limits and an
+ * assumed ambulance speed factor, whereas "14.8 minutes" quietly implies a precision
+ * this model does not have.
+ *
+ * Exhaustive coverage is affordable because of how the search is arranged. Rather than
+ * solving each location separately, {@link EmsRouter#scenarioImpact} runs one forward
+ * Dijkstra from each {@link EmsStation} and one reverse Dijkstra from each emergency
+ * {@link Hospital} — eleven searches per graph, twenty-two in total — which yields the
+ * exact response and transport time at every vertex at once. The weights are the same
+ * effective speeds {@link EmsRouter#respond} routes on, so these figures and a routed
+ * example can never disagree.
+ */
+type ScenarioImpact {
+
+  /**
+   * Id of the scenario that was evaluated.
+   */
+  scenarioId: !string
+
+  /**
+   * Name of the scenario that was evaluated, for labelling.
+   */
+  scenarioName: string
+
+  /**
+   * Id of the baseline scenario it was compared against.
+   */
+  baselineScenarioId: string
+
+  /**
+   * How many locations were evaluated — every {@link RoadNode} flagged
+   * {@link RoadNode#inCoreArea}. There is no sampling and no random seed, so the same
+   * call always returns the same answer and two scenarios are always compared on
+   * identical ground.
+   */
+  pointCount: int
+
+  /**
+   * Locations reachable by a station under BOTH the baseline and the scenario, and
+   * therefore contributing to the averages below. A location a closure makes unreachable
+   * is excluded rather than counted as a very large number, which would let one cut-off
+   * neighbourhood masquerade as city-wide slowness.
+   */
+  comparedCount: int
+
+  /**
+   * Locations reachable under the baseline but NOT under this scenario — places the
+   * scenario cuts off from every ambulance station entirely. This is a more serious
+   * finding than any slowdown and is reported separately for that reason.
+   */
+  strandedCount: int
+
+  /**
+   * Mean seconds for the first ambulance to reach the incident, under the baseline,
+   * averaged over the compared points.
+   */
+  baselineResponseSeconds: double
+
+  /**
+   * The same mean under this scenario.
+   */
+  scenarioResponseSeconds: double
+
+  /**
+   * {@link ScenarioImpact#scenarioResponseSeconds} divided by
+   * {@link ScenarioImpact#baselineResponseSeconds} — the headline multiplier. 1.0 means
+   * the scenario costs nothing; 2.1 means it takes an ambulance more than twice as long
+   * to arrive.
+   */
+  responseRatio: double
+
+  /**
+   * Mean seconds from station to incident to emergency department — the whole chain —
+   * under the baseline.
+   */
+  baselineTotalSeconds: double
+
+  /**
+   * The same whole-chain mean under this scenario.
+   */
+  scenarioTotalSeconds: double
+
+  /**
+   * Latitude of the single location whose response time degrades most, in absolute
+   * seconds. This is where the scenario hurts most, and is what the UI flies the camera
+   * to.
+   */
+  worstLatitude: double
+
+  /**
+   * Longitude of that worst-affected location.
+   */
+  worstLongitude: double
+
+  /**
+   * Baseline response seconds at the worst-affected location.
+   */
+  worstBaselineSeconds: double
+
+  /**
+   * Scenario response seconds at the worst-affected location.
+   */
+  worstScenarioSeconds: double
+
+  /**
+   * Street the worst-affected location sits on, where OpenStreetMap names it, so the
+   * finding can be stated in words a dispatcher would use rather than as coordinates.
+   */
+  worstStreetName: string
+
+  /**
+   * Directed edges the scenario removed from the graph, and how many stretches of road
+   * that corresponds to — the physical extent of the closure.
+   */
+  closedEdgeCount: int
+
+  /**
+   * The distinct closure reasons recorded on the scenario's road overlays, joined for
+   * display. These are the plain-language explanations the overlays carry, not generated
+   * text.
+   */
+  closureReason: string
+
+  /**
+   * The caveat that must accompany these numbers wherever they are shown: which parts
+   * are measured, which are assumed, and why the ratio is more trustworthy than the
+   * minutes.
+   */
+  caveat: !string
+}

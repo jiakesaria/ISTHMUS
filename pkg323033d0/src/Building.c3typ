@@ -1,0 +1,128 @@
+/**
+ * One OpenStreetMap building footprint inside the ISTHMUS study area, carrying the
+ * closed outer ring and an extrusion height so the city can be drawn as a 3D model.
+ *
+ * Buildings play no part in routing — a response is solved entirely on the
+ * {@link RoadSegment} graph — so this type exists for comprehension, not computation.
+ * That is worth stating plainly, because it sets the quality bar: a footprint being a
+ * few metres off changes nothing about any reported travel time, whereas a height
+ * presented as surveyed when it was inferred would be exactly the kind of quiet
+ * fiction the rest of this model refuses.
+ *
+ * Height is therefore the field to read carefully. The source extract carries an
+ * explicit `height` tag on roughly 1 in 170 buildings and a `building:levels` tag on
+ * about 1 in 7; everything else falls back to a per-class default. Which of those
+ * three cases produced {@link Building#heightMeters} is recorded in
+ * {@link Building#heightIsEstimated} and {@link Building#heightSource}, and the UI
+ * can shade the city by that distinction so a viewer sees the uncertainty rather
+ * than being asked to take the skyline on faith.
+ */
+entity type Building schema name 'ISTH_BUILDING' {
+
+  /**
+   * Source OpenStreetMap way id. Unique per building in this extract and used to
+   * deduplicate a footprint that appears in more than one downloaded tile, since the
+   * tiles were cut on a lat/lon grid that pays no attention to building edges.
+   */
+  osmWayId: string
+
+  /**
+   * Building name from the OpenStreetMap `name` tag, e.g. "Camp Randall Stadium" or
+   * "Wisconsin Institutes for Medical Research". Null for the large majority — OSM
+   * names civic and campus buildings far more often than houses, so this field is
+   * sparse by nature rather than by load failure.
+   */
+  name: string
+
+  /**
+   * Value of the OpenStreetMap `building=*` tag: "yes" for the unqualified majority,
+   * or a specific class such as house, apartments, university, hospital, retail,
+   * commercial, garage, church, stadium. Drives the height default when no better
+   * evidence exists, and lets the renderer colour civic and campus structures
+   * distinctly from housing stock.
+   *
+   * Deliberately a free string rather than an enum: OSM's building vocabulary is open
+   * and growing, and an unanticipated tag value must not fail the load.
+   */
+  buildingKind: string
+
+  /**
+   * Latitude of the footprint centroid, as the vertex average of the outer ring.
+   * Stored so a building can be found, labelled or spatially filtered without having
+   * to parse {@link Building#footprint}.
+   */
+  centroidLatitude: !double
+
+  /**
+   * Longitude of the footprint centroid. See {@link Building#centroidLatitude}.
+   */
+  centroidLongitude: !double
+
+  /**
+   * The closed outer ring as a compact JSON array of `[latitude, longitude]` pairs,
+   * matching the convention used by {@link RoadSegment#geometry}. The first and last
+   * pair are equal, so the renderer can extrude the polygon without having to repair
+   * it. Inner rings (courtyards, atria) are not retained — they affect nothing in this
+   * model and would roughly double the payload.
+   */
+  footprint: !string
+
+  /**
+   * Planimetric footprint area in square metres, from the shoelace formula on the ring
+   * after projecting to local metres. Used to drop noise (sheds, bin stores) from the
+   * render and to pick which buildings deserve a label at low zoom.
+   */
+  areaSquareMeters: double
+
+  /**
+   * Storey count from the OpenStreetMap `building:levels` tag. Null when untagged,
+   * which is the common case — do not substitute a guess here; the guess belongs in
+   * {@link Building#heightMeters} where it is flagged as one.
+   */
+  levels: int
+
+  /**
+   * Extrusion height in metres above ground. Resolved in strict order of evidence:
+   * the `height` tag if present, else {@link Building#levels} multiplied by a 3.3 m
+   * storey height, else a per-class default. Always check
+   * {@link Building#heightIsEstimated} before quoting this as a real dimension.
+   */
+  heightMeters: !double
+
+  /**
+   * True whenever {@link Building#heightMeters} was inferred rather than read from an
+   * explicit OpenStreetMap `height` tag — including the level-count path, since the
+   * 3.3 m storey assumption is itself an estimate. True for the overwhelming majority
+   * of rows in this extract.
+   */
+  heightIsEstimated: !boolean
+
+  /**
+   * Exactly which rule produced the height: "osm:height" for a surveyed tag,
+   * "osm:building:levels" for the storey-count path, or "default:<buildingKind>"
+   * naming the class fallback that fired. Makes the skyline auditable building by
+   * building.
+   */
+  heightSource: string
+
+  /**
+   * True when the centroid falls inside the core study box — the UW–Madison campus and
+   * the isthmus proper — as opposed to the wider box that was downloaded so that roads
+   * would not be clipped mid-street. The 3D scene is built from the core set to keep
+   * the payload bounded.
+   */
+  inCoreArea: boolean
+
+  /**
+   * True for the handful of buildings that anchor the viewer's sense of place —
+   * the stadium, the arenas, the Capitol, the hospitals. Set from a name match against
+   * the already-loaded {@link Venue} and {@link Hospital} rows rather than from any
+   * judgement about architectural importance, so it stays reproducible.
+   */
+  isNotableLandmark: boolean
+
+  /**
+   * Provenance string, e.g. "OpenStreetMap way/12345".
+   */
+  source: !string
+}

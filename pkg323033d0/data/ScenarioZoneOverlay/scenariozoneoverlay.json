@@ -1,0 +1,50 @@
+[
+ {
+  "id": "SCNZONE_gfl_stadium_core",
+  "scenario": {
+   "id": "SCN_gameday_flood"
+  },
+  "centerLatitude": 43.06994,
+  "centerLongitude": -89.412753,
+  "radiusMeters": 650,
+  "speedMultiplier": 0.28,
+  "reason": "Camp Randall egress \u2014 the crowd is crossing Regent and Breese on foot, so vehicles move at roughly a quarter of normal speed.",
+  "source": "Synthesized by the ISTHMUS project for demonstration. The road geometry, street name and OpenStreetMap way ids are real; the flood extent, the closure and the crowd slowdowns are MODELLED, not observed. Patterned on the August 2018 Madison storm, during which Lake Monona flooding closed lakeshore routes including John Nolen Drive."
+ },
+ {
+  "id": "SCNZONE_gfl_stadium_approach",
+  "scenario": {
+   "id": "SCN_gameday_flood"
+  },
+  "centerLatitude": 43.06994,
+  "centerLongitude": -89.412753,
+  "radiusMeters": 1700,
+  "speedMultiplier": 0.55,
+  "reason": "Queueing on every approach to the stadium \u2014 Regent, Monroe, University and Campus Drive all backing up as the crowd disperses.",
+  "source": "Synthesized by the ISTHMUS project for demonstration. The road geometry, street name and OpenStreetMap way ids are real; the flood extent, the closure and the crowd slowdowns are MODELLED, not observed. Patterned on the August 2018 Madison storm, during which Lake Monona flooding closed lakeshore routes including John Nolen Drive."
+ },
+ {
+  "id": "SCNZONE_gfl_park_street_detour",
+  "scenario": {
+   "id": "SCN_gameday_flood"
+  },
+  "centerLatitude": 43.0622,
+  "centerLongitude": -89.4015,
+  "radiusMeters": 900,
+  "speedMultiplier": 0.45,
+  "reason": "South Park Street is carrying the traffic that would normally be on John Nolen Drive, on top of the stadium outflow.",
+  "source": "Synthesized by the ISTHMUS project for demonstration. The road geometry, street name and OpenStreetMap way ids are real; the flood extent, the closure and the crowd slowdowns are MODELLED, not observed. Patterned on the August 2018 Madison storm, during which Lake Monona flooding closed lakeshore routes including John Nolen Drive."
+ },
+ {
+  "id": "SCNZONE_gfl_downtown",
+  "scenario": {
+   "id": "SCN_gameday_flood"
+  },
+  "centerLatitude": 43.074692,
+  "centerLongitude": -89.384166,
+  "radiusMeters": 1000,
+  "speedMultiplier": 0.6,
+  "reason": "Capitol Square absorbing the displaced southern approach, with ordinary Saturday-evening activity on top.",
+  "source": "Synthesized by the ISTHMUS project for demonstration. The road geometry, street name and OpenStreetMap way ids are real; the flood extent, the closure and the crowd slowdowns are MODELLED, not observed. Patterned on the August 2018 Madison storm, during which Lake Monona flooding closed lakeshore routes including John Nolen Drive."
+ }
+]

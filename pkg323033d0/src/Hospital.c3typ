@@ -1,0 +1,145 @@
+/**
+ * A healthcare facility inside the ISTHMUS study area, extracted from OpenStreetMap.
+ *
+ * This type intentionally holds both true hospitals and outpatient clinics, because
+ * both are what OpenStreetMap actually publishes and discarding the clinics at load
+ * time would hide real data. Routing must therefore filter on
+ * {@link Hospital#isEmergencyDestination} rather than assuming every row can receive
+ * an ambulance — of the facilities in this bounding box, the large majority are
+ * clinics with no emergency department.
+ *
+ * **Clinical capability is not available from OpenStreetMap.** Trauma-centre level,
+ * stroke-centre designation, cath lab, burn and obstetric capability are all left
+ * null here rather than guessed, because routing a major trauma to the wrong facility
+ * on invented data would be worse than refusing to route. Those fields are populated
+ * only from an authoritative registry, and {@link Hospital#capabilitySource} records
+ * which one.
+ */
+entity type Hospital schema name 'ISTH_HOSPITAL' {
+
+  /**
+   * Street address assembled from the OpenStreetMap `addr:*` tags; null when untagged.
+   */
+  address: string
+
+  /**
+   * WGS84 latitude of the facility. For facilities mapped as a building footprint or a
+   * multipolygon relation this is the centroid, not a door location.
+   */
+  latitude: !double
+
+  /**
+   * WGS84 longitude of the facility (centroid for footprints — see
+   * {@link Hospital#latitude}).
+   */
+  longitude: !double
+
+  /**
+   * The graph vertex this facility attaches to, found by nearest-neighbour search over
+   * the retained road network. Hospitals are polygons that do not themselves sit on the
+   * road graph, so routing is computed to this node and the final few metres of
+   * driveway are not modeled.
+   */
+  nearestNode: RoadNode
+
+  /**
+   * Metres from the facility centroid to {@link Hospital#nearestNode}. A quality signal:
+   * single or low double digits is a clean snap, while a large value means the facility
+   * attached to a distant road and its routing results deserve suspicion.
+   */
+  snapDistanceMeters: double
+
+  /**
+   * "hospital" for `amenity=hospital` / `healthcare=hospital`, or "clinic" for
+   * `amenity=clinic` / `healthcare=clinic`.
+   */
+  facilityKind: string
+
+  /**
+   * True only when OpenStreetMap explicitly tags `emergency=yes` on the facility. Null
+   * means the tag is simply absent upstream — which is *not* evidence that no emergency
+   * department exists.
+   */
+  hasEmergency: boolean
+
+  /**
+   * Whether an ambulance may transport a patient here, derived during extraction as
+   * `facilityKind == "hospital" AND hasEmergency == true`. This is the flag routing
+   * filters on. It evaluates true for exactly five facilities in this extract.
+   */
+  isEmergencyDestination: boolean
+
+  /**
+   * Operating health system from the OpenStreetMap `operator` tag, e.g. "UW Health".
+   */
+  operator: string
+
+  /**
+   * Whether the upstream OpenStreetMap object was a node, way or relation. Facilities
+   * mapped as ways/relations contribute a centroid rather than a surveyed point.
+   */
+  osmType: string
+
+  /**
+   * Upstream OpenStreetMap object id, for provenance and for merging a future re-extract.
+   */
+  osmId: string
+
+  /**
+   * Provenance string, e.g. "OpenStreetMap way/12345".
+   */
+  source: !string
+
+  /**
+   * American College of Surgeons / state-designated trauma centre level (1 = highest).
+   * **Null in this load** — OpenStreetMap does not carry trauma designation. Populate
+   * only from an authoritative registry and record it in
+   * {@link Hospital#capabilitySource}.
+   */
+  traumaLevel: int
+
+  /**
+   * Whether the facility is a designated stroke centre. Null in this load — not an
+   * OpenStreetMap attribute. See {@link Hospital#traumaLevel}.
+   */
+  hasStrokeCenter: boolean
+
+  /**
+   * Whether the facility has an interventional cardiac catheterisation lab. Null in
+   * this load — not an OpenStreetMap attribute.
+   */
+  hasCathLab: boolean
+
+  /**
+   * Whether the facility accepts paediatric emergencies. Null in this load — not an
+   * OpenStreetMap attribute.
+   */
+  hasPediatrics: boolean
+
+  /**
+   * Whether the facility operates a burn unit. Null in this load — not an
+   * OpenStreetMap attribute.
+   */
+  hasBurnUnit: boolean
+
+  /**
+   * Whether the facility provides obstetric emergency care. Null in this load — not an
+   * OpenStreetMap attribute.
+   */
+  hasObstetrics: boolean
+
+  /**
+   * Names the authority that supplied the clinical capability fields above. Null
+   * while those fields are unpopulated, which is the state after an OpenStreetMap-only
+   * load.
+   */
+  capabilitySource: string
+
+  /**
+   * Free-text note recording a known upstream data problem with this row — for example
+   * that OpenStreetMap carries two separate objects for the same VA hospital campus
+   * roughly 60 m apart. Recorded rather than silently de-duplicated so the extract stays
+   * faithful to its source.
+   */
+  dataQualityNote: string
+}

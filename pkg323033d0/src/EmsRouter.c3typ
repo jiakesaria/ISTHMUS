@@ -1,0 +1,111 @@
+/**
+ * The routing engine for ISTHMUS: it turns the extracted road network plus a
+ * {@link Scenario}'s overlays into concrete emergency response times.
+ *
+ * All scenario influence is funnelled through a single effective-speed calculation —
+ * `freeFlowSpeedKph × ambulanceSpeedFactor × zoneMultiplier × roadMultiplier`, with
+ * closed edges dropped from the graph altogether. Keeping that resolution in one place
+ * is what lets new kinds of degradation be added as data rather than as code.
+ *
+ * This is a stateless service type with no persisted rows; the whole graph is small
+ * enough (a few thousand vertices) to load and solve per request in well under a
+ * second, so no graph cache is maintained and no staleness can creep in after a
+ * scenario edit.
+ */
+type EmsRouter {
+
+  /**
+   * Packages the drivable network for map rendering, collapsing the directed edge pairs
+   * of two-way streets into single polylines and attaching the data-provenance counts a
+   * viewer needs.
+   *
+   * The geometry returned is the immutable base network — a scenario never moves a road.
+   * What the scenario contributes is the per-stretch congestion and closure flags
+   * documented on {@link MapNetwork#linesJson}, resolved here on the server using the
+   * SAME overlay index the routing solver uses. Colouring traffic on the client from its
+   * own interpretation of the overlays would let the picture drift away from the numbers;
+   * doing it here means the red road on the map is by construction the same road the
+   * solver refused to route down.
+   *
+   * @param scenarioId
+   *        Id of the {@link Scenario} whose conditions to resolve. When null the
+   *        scenario flagged {@link Scenario#isBaseline} is used, which yields an
+   *        unaffected network — so a caller can never get traffic colours that belong to
+   *        no stated set of conditions.
+   * @return
+   *        The polylines, the provenance counts, and the scenario the congestion figures
+   *        belong to.
+   */
+  mapNetwork: function(scenarioId: string): MapNetwork js
+
+  /**
+   * Packages {@link Building} footprints for 3D rendering, together with the
+   * measured-versus-inferred height split that qualifies them.
+   *
+   * Takes no scenario for the same reason {@link EmsRouter#mapNetwork} does not:
+   * buildings are scenery, not part of the routable graph, so no overlay can change
+   * them and the payload can be fetched once and kept for the life of the page.
+   *
+   * @param minAreaSquareMeters
+   *        Optional footprint-area floor in square metres. Small outbuildings dominate
+   *        the row count while contributing almost nothing to the look of the city, so
+   *        raising this is the cheapest way to trade fidelity for frame rate. When null
+   *        every building is returned, and {@link MapBuildings#totalBuildingCount}
+   *        always reports the unfiltered total so a client can say what was left out.
+   * @return
+   *        The footprints, their heights, and the provenance counts for those heights.
+   */
+  mapBuildings: function(minAreaSquareMeters: double): MapBuildings js
+
+  /**
+   * Computes the full emergency response for an incident at the given coordinates under
+   * the given scenario.
+   *
+   * Solves two shortest-path problems against the scenario's effective speeds: one
+   * backwards from the incident to find the station that can reach it soonest, and one
+   * forwards from the incident to find the fastest reachable emergency department. The
+   * two are solved independently because Madison's one-way couplets make the inbound
+   * and outbound routes genuinely different.
+   *
+   * @param latitude
+   *        WGS84 latitude of the incident; snapped to the nearest graph vertex.
+   * @param longitude
+   *        WGS84 longitude of the incident.
+   * @param scenarioId
+   *        Id of the {@link Scenario} to evaluate under. When null the single scenario
+   *        flagged {@link Scenario#isBaseline} is used, so a caller can never
+   *        accidentally route against no conditions at all.
+   * @return
+   *        Both legs, the chosen station and hospital, ranked alternatives, and any
+   *        warnings that qualify the result.
+   */
+  respond: function(latitude: double, longitude: double, scenarioId: string): ResponsePlan js
+
+  /**
+   * Measures what a scenario costs, by solving the whole city twice — once against the
+   * baseline and once against the scenario — and comparing the two.
+   *
+   * This is the method behind the headline figure of the demonstration, so it is built
+   * to resist the two ways such a figure normally lies. First, there is no sampling at
+   * all: every modelled intersection in the core area is evaluated, so the result cannot
+   * be flattered by a convenient choice of incident locations. Second, a location that
+   * the scenario strands — reachable by no station at all — is excluded from the averages
+   * and counted separately in {@link ScenarioImpact#strandedCount}, because folding an
+   * unreachable location into a mean would turn one cut-off neighbourhood into a fake
+   * city-wide slowdown.
+   *
+   * Exhaustiveness is cheap here because the searches are inverted: one forward Dijkstra
+   * per station and one reverse Dijkstra per emergency department give the exact response
+   * and transport time at every vertex simultaneously. That is eleven searches per graph
+   * instead of one pair per location, and is why this is a distinct method rather than a
+   * loop over {@link EmsRouter#respond}.
+   *
+   * @param scenarioId
+   *        Id of the {@link Scenario} to measure. Passing the baseline's own id is legal
+   *        and must yield a ratio of 1.0 — a useful self-check.
+   * @return
+   *        The before-and-after averages, the ratio between them, the worst-affected
+   *        location, and the caveat that must be displayed with them.
+   */
+  scenarioImpact: function(scenarioId: string): ScenarioImpact js
+}

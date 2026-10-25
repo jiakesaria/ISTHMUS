@@ -1,0 +1,105 @@
+/**
+ * A provenance and reproducibility manifest for one OpenStreetMap extraction run.
+ *
+ * Per-record `source` strings establish where a single row came from; this type
+ * establishes how the *whole* dataset was produced, so a load can be audited or
+ * reproduced months later. It records the API actually called, the licence the data
+ * carries, both bounding boxes, and a SHA-256 over the concatenated raw tiles — so it
+ * is provable whether a later re-extract pulled identical upstream data or whether
+ * OpenStreetMap changed underneath the model.
+ *
+ * The raw tiles themselves are kept on disk at {@link OsmDataLoad#rawPath}, which is
+ * what allows the entire pipeline to be re-run without re-downloading anything.
+ */
+entity type OsmDataLoad schema name 'ISTH_OSM_DATA_LOAD' {
+
+  /**
+   * The exact endpoint the tiles were fetched from. The public Overpass API is
+   * unreachable from this environment, so extraction uses the OpenStreetMap main map
+   * API, tiled to stay under its 50,000-node per-request cap.
+   */
+  sourceApi: !string
+
+  /**
+   * Licence the extracted data is governed by — the Open Database Licence 1.0, which
+   * requires attributing OpenStreetMap contributors anywhere this data is displayed.
+   */
+  sourceLicense: !string
+
+  /**
+   * Southern edge of the buffered *download* box in decimal degrees.
+   */
+  bboxSouth: !double
+
+  /**
+   * Northern edge of the buffered *download* box in decimal degrees.
+   */
+  bboxNorth: !double
+
+  /**
+   * Western edge of the buffered *download* box in decimal degrees.
+   */
+  bboxWest: !double
+
+  /**
+   * Eastern edge of the buffered *download* box in decimal degrees.
+   */
+  bboxEast: !double
+
+  /**
+   * Southern edge of the core analysis box — the area actually being modeled. The
+   * download box is deliberately ~1 km larger on every side so that roads leaving the
+   * study area are not clipped into artificial dead-ends that would distort routing.
+   */
+  coreBboxSouth: !double
+
+  /**
+   * Northern edge of the core analysis box. See {@link OsmDataLoad#coreBboxSouth}.
+   */
+  coreBboxNorth: !double
+
+  /**
+   * Western edge of the core analysis box. See {@link OsmDataLoad#coreBboxSouth}.
+   */
+  coreBboxWest: !double
+
+  /**
+   * Eastern edge of the core analysis box. See {@link OsmDataLoad#coreBboxSouth}.
+   */
+  coreBboxEast: !double
+
+  /**
+   * Number of raw XML tiles downloaded to cover the download box.
+   */
+  rawTileCount: int
+
+  /**
+   * Total bytes of raw OpenStreetMap XML retrieved across all tiles.
+   */
+  rawBytes: double
+
+  /**
+   * SHA-256 over the concatenated raw tiles in sorted filename order. Lets a later run
+   * prove whether it is working from byte-identical upstream data.
+   */
+  rawChecksumSha256: string
+
+  /**
+   * Workspace-relative directory holding the cached raw tiles, enabling a full rebuild
+   * with no network access.
+   */
+  rawPath: string
+
+  /**
+   * JSON object mapping each emitted type name to the number of records produced, as a
+   * snapshot of what this run actually yielded.
+   */
+  recordCounts: string
+
+  /**
+   * Human-readable description of the transformation rules applied — which highway
+   * classes were treated as drivable, how ways were split, which connectivity filter
+   * ran, and which fields were estimated rather than observed.
+   */
+  notes: string
+}

@@ -1,0 +1,450 @@
+[
+ {
+  "id": "SCNROAD_gfl_closed_453855878",
+  "scenario": {
+   "id": "SCN_gameday_flood"
+  },
+  "osmWayId": "453855878",
+  "isClosed": true,
+  "reason": "Flooded \u2014 Lake Monona has overtopped the John Nolen Drive causeway. Closed to all traffic.",
+  "source": "Synthesized by the ISTHMUS project for demonstration. The road geometry, street name and OpenStreetMap way ids are real; the flood extent, the closure and the crowd slowdowns are MODELLED, not observed. Patterned on the August 2018 Madison storm, during which Lake Monona flooding closed lakeshore routes including John Nolen Drive."
+ },
+ {
+  "id": "SCNROAD_gfl_closed_700405174",
+  "scenario": {
+   "id": "SCN_gameday_flood"
+  },
+  "osmWayId": "700405174",
+  "isClosed": true,
+  "reason": "Flooded \u2014 Lake Monona has overtopped the John Nolen Drive causeway. Closed to all traffic.",
+  "source": "Synthesized by the ISTHMUS project for demonstration. The road geometry, street name and OpenStreetMap way ids are real; the flood extent, the closure and the crowd slowdowns are MODELLED, not observed. Patterned on the August 2018 Madison storm, during which Lake Monona flooding closed lakeshore routes including John Nolen Drive."
+ },
+ {
+  "id": "SCNROAD_gfl_closed_474929667",
+  "scenario": {
+   "id": "SCN_gameday_flood"
+  },
+  "osmWayId": "474929667",
+  "isClosed": true,
+  "reason": "Flooded \u2014 Lake Monona has overtopped the John Nolen Drive causeway. Closed to all traffic.",
+  "source": "Synthesized by the ISTHMUS project for demonstration. The road geometry, street name and OpenStreetMap way ids are real; the flood extent, the closure and the crowd slowdowns are MODELLED, not observed. Patterned on the August 2018 Madison storm, during which Lake Monona flooding closed lakeshore routes including John Nolen Drive."
+ },
+ {
+  "id": "SCNROAD_gfl_closed_38238989",
+  "scenario": {
+   "id": "SCN_gameday_flood"
+  },
+  "osmWayId": "38238989",
+  "isClosed": true,
+  "reason": "Flooded \u2014 Lake Monona has overtopped the John Nolen Drive causeway. Closed to all traffic.",
+  "source": "Synthesized by the ISTHMUS project for demonstration. The road geometry, street name and OpenStreetMap way ids are real; the flood extent, the closure and the crowd slowdowns are MODELLED, not observed. Patterned on the August 2018 Madison storm, during which Lake Monona flooding closed lakeshore routes including John Nolen Drive."
+ },
+ {
+  "id": "SCNROAD_gfl_closed_434828965",
+  "scenario": {
+   "id": "SCN_gameday_flood"
+  },
+  "osmWayId": "434828965",
+  "isClosed": true,
+  "reason": "Flooded \u2014 Lake Monona has overtopped the John Nolen Drive causeway. Closed to all traffic.",
+  "source": "Synthesized by the ISTHMUS project for demonstration. The road geometry, street name and OpenStreetMap way ids are real; the flood extent, the closure and the crowd slowdowns are MODELLED, not observed. Patterned on the August 2018 Madison storm, during which Lake Monona flooding closed lakeshore routes including John Nolen Drive."
+ },
+ {
+  "id": "SCNROAD_gfl_closed_38238993",
+  "scenario": {
+   "id": "SCN_gameday_flood"
+  },
+  "osmWayId": "38238993",
+  "isClosed": true,
+  "reason": "Flooded \u2014 Lake Monona has overtopped the John Nolen Drive causeway. Closed to all traffic.",
+  "source": "Synthesized by the ISTHMUS project for demonstration. The road geometry, street name and OpenStreetMap way ids are real; the flood extent, the closure and the crowd slowdowns are MODELLED, not observed. Patterned on the August 2018 Madison storm, during which Lake Monona flooding closed lakeshore routes including John Nolen Drive."
+ },
+ {
+  "id": "SCNROAD_gfl_closed_38238995",
+  "scenario": {
+   "id": "SCN_gameday_flood"
+  },
+  "osmWayId": "38238995",
+  "isClosed": true,
+  "reason": "Flooded \u2014 Lake Monona has overtopped the John Nolen Drive causeway. Closed to all traffic.",
+  "source": "Synthesized by the ISTHMUS project for demonstration. The road geometry, street name and OpenStreetMap way ids are real; the flood extent, the closure and the crowd slowdowns are MODELLED, not observed. Patterned on the August 2018 Madison storm, during which Lake Monona flooding closed lakeshore routes including John Nolen Drive."
+ },
+ {
+  "id": "SCNROAD_gfl_closed_38238994",
+  "scenario": {
+   "id": "SCN_gameday_flood"
+  },
+  "osmWayId": "38238994",
+  "isClosed": true,
+  "reason": "Flooded \u2014 Lake Monona has overtopped the John Nolen Drive causeway. Closed to all traffic.",
+  "source": "Synthesized by the ISTHMUS project for demonstration. The road geometry, street name and OpenStreetMap way ids are real; the flood extent, the closure and the crowd slowdowns are MODELLED, not observed. Patterned on the August 2018 Madison storm, during which Lake Monona flooding closed lakeshore routes including John Nolen Drive."
+ },
+ {
+  "id": "SCNROAD_gfl_closed_393915685",
+  "scenario": {
+   "id": "SCN_gameday_flood"
+  },
+  "osmWayId": "393915685",
+  "isClosed": true,
+  "reason": "Flooded \u2014 Lake Monona has overtopped the John Nolen Drive causeway. Closed to all traffic.",
+  "source": "Synthesized by the ISTHMUS project for demonstration. The road geometry, street name and OpenStreetMap way ids are real; the flood extent, the closure and the crowd slowdowns are MODELLED, not observed. Patterned on the August 2018 Madison storm, during which Lake Monona flooding closed lakeshore routes including John Nolen Drive."
+ },
+ {
+  "id": "SCNROAD_gfl_closed_1382881280",
+  "scenario": {
+   "id": "SCN_gameday_flood"
+  },
+  "osmWayId": "1382881280",
+  "isClosed": true,
+  "reason": "Flooded \u2014 Lake Monona has overtopped the John Nolen Drive causeway. Closed to all traffic.",
+  "source": "Synthesized by the ISTHMUS project for demonstration. The road geometry, street name and OpenStreetMap way ids are real; the flood extent, the closure and the crowd slowdowns are MODELLED, not observed. Patterned on the August 2018 Madison storm, during which Lake Monona flooding closed lakeshore routes including John Nolen Drive."
+ },
+ {
+  "id": "SCNROAD_gfl_closed_1382881281",
+  "scenario": {
+   "id": "SCN_gameday_flood"
+  },
+  "osmWayId": "1382881281",
+  "isClosed": true,
+  "reason": "Flooded \u2014 Lake Monona has overtopped the John Nolen Drive causeway. Closed to all traffic.",
+  "source": "Synthesized by the ISTHMUS project for demonstration. The road geometry, street name and OpenStreetMap way ids are real; the flood extent, the closure and the crowd slowdowns are MODELLED, not observed. Patterned on the August 2018 Madison storm, during which Lake Monona flooding closed lakeshore routes including John Nolen Drive."
+ },
+ {
+  "id": "SCNROAD_gfl_closed_1242384247",
+  "scenario": {
+   "id": "SCN_gameday_flood"
+  },
+  "osmWayId": "1242384247",
+  "isClosed": true,
+  "reason": "Flooded \u2014 Lake Monona has overtopped the John Nolen Drive causeway. Closed to all traffic.",
+  "source": "Synthesized by the ISTHMUS project for demonstration. The road geometry, street name and OpenStreetMap way ids are real; the flood extent, the closure and the crowd slowdowns are MODELLED, not observed. Patterned on the August 2018 Madison storm, during which Lake Monona flooding closed lakeshore routes including John Nolen Drive."
+ },
+ {
+  "id": "SCNROAD_gfl_closed_1368646523",
+  "scenario": {
+   "id": "SCN_gameday_flood"
+  },
+  "osmWayId": "1368646523",
+  "isClosed": true,
+  "reason": "Flooded \u2014 Lake Monona has overtopped the John Nolen Drive causeway. Closed to all traffic.",
+  "source": "Synthesized by the ISTHMUS project for demonstration. The road geometry, street name and OpenStreetMap way ids are real; the flood extent, the closure and the crowd slowdowns are MODELLED, not observed. Patterned on the August 2018 Madison storm, during which Lake Monona flooding closed lakeshore routes including John Nolen Drive."
+ },
+ {
+  "id": "SCNROAD_gfl_closed_474929668",
+  "scenario": {
+   "id": "SCN_gameday_flood"
+  },
+  "osmWayId": "474929668",
+  "isClosed": true,
+  "reason": "Flooded \u2014 Lake Monona has overtopped the John Nolen Drive causeway. Closed to all traffic.",
+  "source": "Synthesized by the ISTHMUS project for demonstration. The road geometry, street name and OpenStreetMap way ids are real; the flood extent, the closure and the crowd slowdowns are MODELLED, not observed. Patterned on the August 2018 Madison storm, during which Lake Monona flooding closed lakeshore routes including John Nolen Drive."
+ },
+ {
+  "id": "SCNROAD_gfl_closed_474929669",
+  "scenario": {
+   "id": "SCN_gameday_flood"
+  },
+  "osmWayId": "474929669",
+  "isClosed": true,
+  "reason": "Flooded \u2014 Lake Monona has overtopped the John Nolen Drive causeway. Closed to all traffic.",
+  "source": "Synthesized by the ISTHMUS project for demonstration. The road geometry, street name and OpenStreetMap way ids are real; the flood extent, the closure and the crowd slowdowns are MODELLED, not observed. Patterned on the August 2018 Madison storm, during which Lake Monona flooding closed lakeshore routes including John Nolen Drive."
+ },
+ {
+  "id": "SCNROAD_gfl_closed_29164304",
+  "scenario": {
+   "id": "SCN_gameday_flood"
+  },
+  "osmWayId": "29164304",
+  "isClosed": true,
+  "reason": "Flooded \u2014 Lake Monona has overtopped the John Nolen Drive causeway. Closed to all traffic.",
+  "source": "Synthesized by the ISTHMUS project for demonstration. The road geometry, street name and OpenStreetMap way ids are real; the flood extent, the closure and the crowd slowdowns are MODELLED, not observed. Patterned on the August 2018 Madison storm, during which Lake Monona flooding closed lakeshore routes including John Nolen Drive."
+ },
+ {
+  "id": "SCNROAD_gfl_closed_393915684",
+  "scenario": {
+   "id": "SCN_gameday_flood"
+  },
+  "osmWayId": "393915684",
+  "isClosed": true,
+  "reason": "Flooded \u2014 Lake Monona has overtopped the John Nolen Drive causeway. Closed to all traffic.",
+  "source": "Synthesized by the ISTHMUS project for demonstration. The road geometry, street name and OpenStreetMap way ids are real; the flood extent, the closure and the crowd slowdowns are MODELLED, not observed. Patterned on the August 2018 Madison storm, during which Lake Monona flooding closed lakeshore routes including John Nolen Drive."
+ },
+ {
+  "id": "SCNROAD_gfl_closed_29164507",
+  "scenario": {
+   "id": "SCN_gameday_flood"
+  },
+  "osmWayId": "29164507",
+  "isClosed": true,
+  "reason": "Flooded \u2014 Lake Monona has overtopped the John Nolen Drive causeway. Closed to all traffic.",
+  "source": "Synthesized by the ISTHMUS project for demonstration. The road geometry, street name and OpenStreetMap way ids are real; the flood extent, the closure and the crowd slowdowns are MODELLED, not observed. Patterned on the August 2018 Madison storm, during which Lake Monona flooding closed lakeshore routes including John Nolen Drive."
+ },
+ {
+  "id": "SCNROAD_gfl_closed_29164471",
+  "scenario": {
+   "id": "SCN_gameday_flood"
+  },
+  "osmWayId": "29164471",
+  "isClosed": true,
+  "reason": "Flooded \u2014 Lake Monona has overtopped the John Nolen Drive causeway. Closed to all traffic.",
+  "source": "Synthesized by the ISTHMUS project for demonstration. The road geometry, street name and OpenStreetMap way ids are real; the flood extent, the closure and the crowd slowdowns are MODELLED, not observed. Patterned on the August 2018 Madison storm, during which Lake Monona flooding closed lakeshore routes including John Nolen Drive."
+ },
+ {
+  "id": "SCNROAD_gfl_closed_29164243",
+  "scenario": {
+   "id": "SCN_gameday_flood"
+  },
+  "osmWayId": "29164243",
+  "isClosed": true,
+  "reason": "Flooded \u2014 Lake Monona has overtopped the John Nolen Drive causeway. Closed to all traffic.",
+  "source": "Synthesized by the ISTHMUS project for demonstration. The road geometry, street name and OpenStreetMap way ids are real; the flood extent, the closure and the crowd slowdowns are MODELLED, not observed. Patterned on the August 2018 Madison storm, during which Lake Monona flooding closed lakeshore routes including John Nolen Drive."
+ },
+ {
+  "id": "SCNROAD_gfl_closed_29164253",
+  "scenario": {
+   "id": "SCN_gameday_flood"
+  },
+  "osmWayId": "29164253",
+  "isClosed": true,
+  "reason": "Flooded \u2014 Lake Monona has overtopped the John Nolen Drive causeway. Closed to all traffic.",
+  "source": "Synthesized by the ISTHMUS project for demonstration. The road geometry, street name and OpenStreetMap way ids are real; the flood extent, the closure and the crowd slowdowns are MODELLED, not observed. Patterned on the August 2018 Madison storm, during which Lake Monona flooding closed lakeshore routes including John Nolen Drive."
+ },
+ {
+  "id": "SCNROAD_gfl_closed_474929670",
+  "scenario": {
+   "id": "SCN_gameday_flood"
+  },
+  "osmWayId": "474929670",
+  "isClosed": true,
+  "reason": "Flooded \u2014 Lake Monona has overtopped the John Nolen Drive causeway. Closed to all traffic.",
+  "source": "Synthesized by the ISTHMUS project for demonstration. The road geometry, street name and OpenStreetMap way ids are real; the flood extent, the closure and the crowd slowdowns are MODELLED, not observed. Patterned on the August 2018 Madison storm, during which Lake Monona flooding closed lakeshore routes including John Nolen Drive."
+ },
+ {
+  "id": "SCNROAD_gfl_closed_474929671",
+  "scenario": {
+   "id": "SCN_gameday_flood"
+  },
+  "osmWayId": "474929671",
+  "isClosed": true,
+  "reason": "Flooded \u2014 Lake Monona has overtopped the John Nolen Drive causeway. Closed to all traffic.",
+  "source": "Synthesized by the ISTHMUS project for demonstration. The road geometry, street name and OpenStreetMap way ids are real; the flood extent, the closure and the crowd slowdowns are MODELLED, not observed. Patterned on the August 2018 Madison storm, during which Lake Monona flooding closed lakeshore routes including John Nolen Drive."
+ },
+ {
+  "id": "SCNROAD_gfl_closed_29164255",
+  "scenario": {
+   "id": "SCN_gameday_flood"
+  },
+  "osmWayId": "29164255",
+  "isClosed": true,
+  "reason": "Flooded \u2014 Lake Monona has overtopped the John Nolen Drive causeway. Closed to all traffic.",
+  "source": "Synthesized by the ISTHMUS project for demonstration. The road geometry, street name and OpenStreetMap way ids are real; the flood extent, the closure and the crowd slowdowns are MODELLED, not observed. Patterned on the August 2018 Madison storm, during which Lake Monona flooding closed lakeshore routes including John Nolen Drive."
+ },
+ {
+  "id": "SCNROAD_gfl_closed_29164247",
+  "scenario": {
+   "id": "SCN_gameday_flood"
+  },
+  "osmWayId": "29164247",
+  "isClosed": true,
+  "reason": "Flooded \u2014 Lake Monona has overtopped the John Nolen Drive causeway. Closed to all traffic.",
+  "source": "Synthesized by the ISTHMUS project for demonstration. The road geometry, street name and OpenStreetMap way ids are real; the flood extent, the closure and the crowd slowdowns are MODELLED, not observed. Patterned on the August 2018 Madison storm, during which Lake Monona flooding closed lakeshore routes including John Nolen Drive."
+ },
+ {
+  "id": "SCNROAD_gfl_closed_29164258",
+  "scenario": {
+   "id": "SCN_gameday_flood"
+  },
+  "osmWayId": "29164258",
+  "isClosed": true,
+  "reason": "Flooded \u2014 Lake Monona has overtopped the John Nolen Drive causeway. Closed to all traffic.",
+  "source": "Synthesized by the ISTHMUS project for demonstration. The road geometry, street name and OpenStreetMap way ids are real; the flood extent, the closure and the crowd slowdowns are MODELLED, not observed. Patterned on the August 2018 Madison storm, during which Lake Monona flooding closed lakeshore routes including John Nolen Drive."
+ },
+ {
+  "id": "SCNROAD_gfl_closed_29164263",
+  "scenario": {
+   "id": "SCN_gameday_flood"
+  },
+  "osmWayId": "29164263",
+  "isClosed": true,
+  "reason": "Flooded \u2014 Lake Monona has overtopped the John Nolen Drive causeway. Closed to all traffic.",
+  "source": "Synthesized by the ISTHMUS project for demonstration. The road geometry, street name and OpenStreetMap way ids are real; the flood extent, the closure and the crowd slowdowns are MODELLED, not observed. Patterned on the August 2018 Madison storm, during which Lake Monona flooding closed lakeshore routes including John Nolen Drive."
+ },
+ {
+  "id": "SCNROAD_gfl_closed_29164273",
+  "scenario": {
+   "id": "SCN_gameday_flood"
+  },
+  "osmWayId": "29164273",
+  "isClosed": true,
+  "reason": "Flooded \u2014 Lake Monona has overtopped the John Nolen Drive causeway. Closed to all traffic.",
+  "source": "Synthesized by the ISTHMUS project for demonstration. The road geometry, street name and OpenStreetMap way ids are real; the flood extent, the closure and the crowd slowdowns are MODELLED, not observed. Patterned on the August 2018 Madison storm, during which Lake Monona flooding closed lakeshore routes including John Nolen Drive."
+ },
+ {
+  "id": "SCNROAD_gfl_closed_29164269",
+  "scenario": {
+   "id": "SCN_gameday_flood"
+  },
+  "osmWayId": "29164269",
+  "isClosed": true,
+  "reason": "Flooded \u2014 Lake Monona has overtopped the John Nolen Drive causeway. Closed to all traffic.",
+  "source": "Synthesized by the ISTHMUS project for demonstration. The road geometry, street name and OpenStreetMap way ids are real; the flood extent, the closure and the crowd slowdowns are MODELLED, not observed. Patterned on the August 2018 Madison storm, during which Lake Monona flooding closed lakeshore routes including John Nolen Drive."
+ },
+ {
+  "id": "SCNROAD_gfl_closed_407096352",
+  "scenario": {
+   "id": "SCN_gameday_flood"
+  },
+  "osmWayId": "407096352",
+  "isClosed": true,
+  "reason": "Flooded \u2014 Lake Monona has overtopped the John Nolen Drive causeway. Closed to all traffic.",
+  "source": "Synthesized by the ISTHMUS project for demonstration. The road geometry, street name and OpenStreetMap way ids are real; the flood extent, the closure and the crowd slowdowns are MODELLED, not observed. Patterned on the August 2018 Madison storm, during which Lake Monona flooding closed lakeshore routes including John Nolen Drive."
+ },
+ {
+  "id": "SCNROAD_gfl_closed_6787268",
+  "scenario": {
+   "id": "SCN_gameday_flood"
+  },
+  "osmWayId": "6787268",
+  "isClosed": true,
+  "reason": "Flooded \u2014 Lake Monona has overtopped the John Nolen Drive causeway. Closed to all traffic.",
+  "source": "Synthesized by the ISTHMUS project for demonstration. The road geometry, street name and OpenStreetMap way ids are real; the flood extent, the closure and the crowd slowdowns are MODELLED, not observed. Patterned on the August 2018 Madison storm, during which Lake Monona flooding closed lakeshore routes including John Nolen Drive."
+ },
+ {
+  "id": "SCNROAD_gfl_closed_407096354",
+  "scenario": {
+   "id": "SCN_gameday_flood"
+  },
+  "osmWayId": "407096354",
+  "isClosed": true,
+  "reason": "Flooded \u2014 Lake Monona has overtopped the John Nolen Drive causeway. Closed to all traffic.",
+  "source": "Synthesized by the ISTHMUS project for demonstration. The road geometry, street name and OpenStreetMap way ids are real; the flood extent, the closure and the crowd slowdowns are MODELLED, not observed. Patterned on the August 2018 Madison storm, during which Lake Monona flooding closed lakeshore routes including John Nolen Drive."
+ },
+ {
+  "id": "SCNROAD_gfl_closed_52395170",
+  "scenario": {
+   "id": "SCN_gameday_flood"
+  },
+  "osmWayId": "52395170",
+  "isClosed": true,
+  "reason": "Flooded \u2014 Lake Monona has overtopped the John Nolen Drive causeway. Closed to all traffic.",
+  "source": "Synthesized by the ISTHMUS project for demonstration. The road geometry, street name and OpenStreetMap way ids are real; the flood extent, the closure and the crowd slowdowns are MODELLED, not observed. Patterned on the August 2018 Madison storm, during which Lake Monona flooding closed lakeshore routes including John Nolen Drive."
+ },
+ {
+  "id": "SCNROAD_gfl_closed_407095301",
+  "scenario": {
+   "id": "SCN_gameday_flood"
+  },
+  "osmWayId": "407095301",
+  "isClosed": true,
+  "reason": "Flooded \u2014 Lake Monona has overtopped the John Nolen Drive causeway. Closed to all traffic.",
+  "source": "Synthesized by the ISTHMUS project for demonstration. The road geometry, street name and OpenStreetMap way ids are real; the flood extent, the closure and the crowd slowdowns are MODELLED, not observed. Patterned on the August 2018 Madison storm, during which Lake Monona flooding closed lakeshore routes including John Nolen Drive."
+ },
+ {
+  "id": "SCNROAD_gfl_closed_700405225",
+  "scenario": {
+   "id": "SCN_gameday_flood"
+  },
+  "osmWayId": "700405225",
+  "isClosed": true,
+  "reason": "Flooded \u2014 Lake Monona has overtopped the John Nolen Drive causeway. Closed to all traffic.",
+  "source": "Synthesized by the ISTHMUS project for demonstration. The road geometry, street name and OpenStreetMap way ids are real; the flood extent, the closure and the crowd slowdowns are MODELLED, not observed. Patterned on the August 2018 Madison storm, during which Lake Monona flooding closed lakeshore routes including John Nolen Drive."
+ },
+ {
+  "id": "SCNROAD_gfl_closed_397317507",
+  "scenario": {
+   "id": "SCN_gameday_flood"
+  },
+  "osmWayId": "397317507",
+  "isClosed": true,
+  "reason": "Flooded \u2014 Lake Monona has overtopped the John Nolen Drive causeway. Closed to all traffic.",
+  "source": "Synthesized by the ISTHMUS project for demonstration. The road geometry, street name and OpenStreetMap way ids are real; the flood extent, the closure and the crowd slowdowns are MODELLED, not observed. Patterned on the August 2018 Madison storm, during which Lake Monona flooding closed lakeshore routes including John Nolen Drive."
+ },
+ {
+  "id": "SCNROAD_gfl_slow_112457413",
+  "scenario": {
+   "id": "SCN_gameday_flood"
+  },
+  "osmWayId": "112457413",
+  "isClosed": false,
+  "speedMultiplier": 0.35,
+  "reason": "Standing water on North Shore Drive \u2014 one lane passable, traffic crawling.",
+  "source": "Synthesized by the ISTHMUS project for demonstration. The road geometry, street name and OpenStreetMap way ids are real; the flood extent, the closure and the crowd slowdowns are MODELLED, not observed. Patterned on the August 2018 Madison storm, during which Lake Monona flooding closed lakeshore routes including John Nolen Drive."
+ },
+ {
+  "id": "SCNROAD_gfl_slow_118456055",
+  "scenario": {
+   "id": "SCN_gameday_flood"
+  },
+  "osmWayId": "118456055",
+  "isClosed": false,
+  "speedMultiplier": 0.35,
+  "reason": "Standing water on North Shore Drive \u2014 one lane passable, traffic crawling.",
+  "source": "Synthesized by the ISTHMUS project for demonstration. The road geometry, street name and OpenStreetMap way ids are real; the flood extent, the closure and the crowd slowdowns are MODELLED, not observed. Patterned on the August 2018 Madison storm, during which Lake Monona flooding closed lakeshore routes including John Nolen Drive."
+ },
+ {
+  "id": "SCNROAD_gfl_slow_307232255",
+  "scenario": {
+   "id": "SCN_gameday_flood"
+  },
+  "osmWayId": "307232255",
+  "isClosed": false,
+  "speedMultiplier": 0.35,
+  "reason": "Standing water on North Shore Drive \u2014 one lane passable, traffic crawling.",
+  "source": "Synthesized by the ISTHMUS project for demonstration. The road geometry, street name and OpenStreetMap way ids are real; the flood extent, the closure and the crowd slowdowns are MODELLED, not observed. Patterned on the August 2018 Madison storm, during which Lake Monona flooding closed lakeshore routes including John Nolen Drive."
+ },
+ {
+  "id": "SCNROAD_gfl_slow_307232263",
+  "scenario": {
+   "id": "SCN_gameday_flood"
+  },
+  "osmWayId": "307232263",
+  "isClosed": false,
+  "speedMultiplier": 0.35,
+  "reason": "Standing water on North Shore Drive \u2014 one lane passable, traffic crawling.",
+  "source": "Synthesized by the ISTHMUS project for demonstration. The road geometry, street name and OpenStreetMap way ids are real; the flood extent, the closure and the crowd slowdowns are MODELLED, not observed. Patterned on the August 2018 Madison storm, during which Lake Monona flooding closed lakeshore routes including John Nolen Drive."
+ },
+ {
+  "id": "SCNROAD_gfl_slow_314790690",
+  "scenario": {
+   "id": "SCN_gameday_flood"
+  },
+  "osmWayId": "314790690",
+  "isClosed": false,
+  "speedMultiplier": 0.35,
+  "reason": "Standing water on North Shore Drive \u2014 one lane passable, traffic crawling.",
+  "source": "Synthesized by the ISTHMUS project for demonstration. The road geometry, street name and OpenStreetMap way ids are real; the flood extent, the closure and the crowd slowdowns are MODELLED, not observed. Patterned on the August 2018 Madison storm, during which Lake Monona flooding closed lakeshore routes including John Nolen Drive."
+ },
+ {
+  "id": "SCNROAD_gfl_slow_385618003",
+  "scenario": {
+   "id": "SCN_gameday_flood"
+  },
+  "osmWayId": "385618003",
+  "isClosed": false,
+  "speedMultiplier": 0.35,
+  "reason": "Standing water on North Shore Drive \u2014 one lane passable, traffic crawling.",
+  "source": "Synthesized by the ISTHMUS project for demonstration. The road geometry, street name and OpenStreetMap way ids are real; the flood extent, the closure and the crowd slowdowns are MODELLED, not observed. Patterned on the August 2018 Madison storm, during which Lake Monona flooding closed lakeshore routes including John Nolen Drive."
+ },
+ {
+  "id": "SCNROAD_gfl_slow_407096349",
+  "scenario": {
+   "id": "SCN_gameday_flood"
+  },
+  "osmWayId": "407096349",
+  "isClosed": false,
+  "speedMultiplier": 0.35,
+  "reason": "Standing water on North Shore Drive \u2014 one lane passable, traffic crawling.",
+  "source": "Synthesized by the ISTHMUS project for demonstration. The road geometry, street name and OpenStreetMap way ids are real; the flood extent, the closure and the crowd slowdowns are MODELLED, not observed. Patterned on the August 2018 Madison storm, during which Lake Monona flooding closed lakeshore routes including John Nolen Drive."
+ },
+ {
+  "id": "SCNROAD_gfl_slow_1420776150",
+  "scenario": {
+   "id": "SCN_gameday_flood"
+  },
+  "osmWayId": "1420776150",
+  "isClosed": false,
+  "speedMultiplier": 0.35,
+  "reason": "Standing water on North Shore Drive \u2014 one lane passable, traffic crawling.",
+  "source": "Synthesized by the ISTHMUS project for demonstration. The road geometry, street name and OpenStreetMap way ids are real; the flood extent, the closure and the crowd slowdowns are MODELLED, not observed. Patterned on the August 2018 Madison storm, during which Lake Monona flooding closed lakeshore routes including John Nolen Drive."
+ }
+]

@@ -1,0 +1,62 @@
+/**
+ * A change to one road's traversability within a single {@link Scenario} — the closed
+ * bridge or flooded underpass whose effect on response time this project measures.
+ *
+ * An overlay targets either one directed {@link ScenarioRoadOverlay#segment} or, more
+ * usefully for a real closure, every segment sharing an
+ * {@link ScenarioRoadOverlay#osmWayId}: closing "the Williamson Street bridge" means
+ * closing all the directed edges that make up that way, in both directions, and naming
+ * the way once is less error-prone than enumerating edges. Supplying neither target
+ * makes the overlay inert rather than global, so a malformed row cannot silently sever
+ * the network.
+ *
+ * Because overlays are additive and the base network is never mutated, removing a
+ * closure is a delete of this row and nothing else.
+ */
+entity type ScenarioRoadOverlay schema name 'ISTH_SCN_ROAD' {
+
+  /**
+   * The scenario this overlay belongs to; inverse of {@link Scenario#roadOverlays}.
+   */
+  scenario: !Scenario
+
+  /**
+   * A single directed edge to affect. Use this for a genuinely one-directional
+   * restriction, such as a lane reversal for stadium egress.
+   */
+  segment: RoadSegment
+
+  /**
+   * OpenStreetMap way id whose every directed edge this overlay affects. Preferred for
+   * real-world closures, which apply to a whole named stretch of road in both
+   * directions. Matches {@link RoadSegment#osmWayId}.
+   */
+  osmWayId: string
+
+  /**
+   * When true the matched edges are removed from the graph entirely, so routing must
+   * find a detour or report the destination unreachable. This is the mechanism behind
+   * the headline question of which single closure hurts most.
+   */
+  isClosed: boolean
+
+  /**
+   * Factor applied to the matched edges' speed when they are not fully closed — 0.5
+   * halves the speed and doubles the traversal time. Ignored when
+   * {@link ScenarioRoadOverlay#isClosed} is true. Values at or below zero are treated
+   * as a closure rather than producing an infinite travel time.
+   */
+  speedMultiplier: double
+
+  /**
+   * Why this road is degraded in this scenario, in plain language, e.g. "flooded
+   * underpass" or "police cordon for post-game crowd egress".
+   */
+  reason: string
+
+  /**
+   * Origin of this overlay. Overlays representing hypothetical conditions must say so
+   * here; they are an analyst's construction, never observed data.
+   */
+  source: !string
+}

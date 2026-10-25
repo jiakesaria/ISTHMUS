@@ -1,0 +1,57 @@
+/**
+ * A circular area of degraded traffic speed within a single {@link Scenario} — the way
+ * game-day congestion is expressed without hand-authoring a multiplier for each of
+ * thousands of road segments.
+ *
+ * A zone is deliberately crude geometry: a centre and a radius, typically anchored on a
+ * {@link Venue} such as Camp Randall Stadium or the Kohl Center, with a multiplier
+ * standing in for crowd egress gridlock. A road segment falls inside the zone when its
+ * midpoint lies within {@link ScenarioZoneOverlay#radiusMeters} of the centre, and
+ * overlapping zones compound multiplicatively, so a road caught between two emptying
+ * venues is slowed by both.
+ *
+ * Zone multipliers are modelling assumptions, not measurements — see
+ * {@link ScenarioZoneOverlay#source}.
+ */
+entity type ScenarioZoneOverlay schema name 'ISTH_SCN_ZONE' {
+
+  /**
+   * The scenario this zone belongs to; inverse of {@link Scenario#zoneOverlays}.
+   */
+  scenario: !Scenario
+
+  /**
+   * WGS84 latitude of the zone centre, usually a venue location.
+   */
+  centerLatitude: !double
+
+  /**
+   * WGS84 longitude of the zone centre.
+   */
+  centerLongitude: !double
+
+  /**
+   * Radius in metres within which road midpoints are considered affected.
+   */
+  radiusMeters: !double
+
+  /**
+   * Factor applied to the speed of every road inside the zone — 0.35 means traffic
+   * moves at just over a third of free-flow. Values at or below zero are rejected by
+   * routing rather than producing an infinite travel time.
+   */
+  speedMultiplier: !double
+
+  /**
+   * What is happening in this area, e.g. "Camp Randall post-game egress, 80k
+   * attendance".
+   */
+  reason: string
+
+  /**
+   * How the multiplier and radius were arrived at. Game-day congestion has no open
+   * upstream dataset for Madison, so these values are synthesized by this project and
+   * must be presented as assumptions.
+   */
+  source: !string
+}

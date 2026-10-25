@@ -1,0 +1,205 @@
+{
+ "roadNodes": 3432,
+ "roadSegments": 8032,
+ "hospitals": [
+  [
+   "1 South Park UW Health Clinic",
+   43.067094,
+   -89.399845,
+   "clinic"
+  ],
+  [
+   "American Family Children's Hospital",
+   43.076555,
+   -89.433323,
+   "hospital"
+  ],
+  [
+   "Dean & SSM St Mary's Outpatient Center",
+   43.059025,
+   -89.401436,
+   "clinic"
+  ],
+  [
+   "Employee Health Services",
+   43.074352,
+   -89.434177,
+   "clinic"
+  ],
+  [
+   "Float Madison",
+   43.074983,
+   -89.378199,
+   "clinic"
+  ],
+  [
+   "Group Health Cooperative Capitol Clinic",
+   43.067155,
+   -89.394296,
+   "clinic"
+  ],
+  [
+   "SSM Health Dean Medical Group",
+   43.053827,
+   -89.398354,
+   "clinic"
+  ],
+  [
+   "Saint Mary's Hospital",
+   43.05882,
+   -89.403424,
+   "hospital"
+  ],
+  [
+   "UW Health 20 South Park Street Clinic North Building",
+   43.06704,
+   -89.401675,
+   "clinic"
+  ],
+  [
+   "UW Health 20 South Park Street Clinic South Building",
+   43.066779,
+   -89.401721,
+   "clinic"
+  ],
+  [
+   "UW Health Arboretum Clinic",
+   43.055077,
+   -89.39789,
+   "clinic"
+  ],
+  [
+   "UW Health University Hospital",
+   43.076266,
+   -89.432008,
+   "hospital"
+  ],
+  [
+   "UnityPoint Health - Meriter",
+   43.065634,
+   -89.402987,
+   "hospital"
+  ],
+  [
+   "UnityPoint Health - Meriter - West Washington Clinic",
+   43.071483,
+   -89.388046,
+   "clinic"
+  ],
+  [
+   "UnityPoint Meriter Central Therapy",
+   43.051002,
+   -89.395376,
+   "clinic"
+  ],
+  [
+   "University Station Clinic",
+   43.076829,
+   -89.438291,
+   "clinic"
+  ],
+  [
+   "Vein Care Plus",
+   43.064374,
+   -89.418496,
+   "clinic"
+  ],
+  [
+   "Veterans Administration Hospital",
+   43.07458,
+   -89.431028,
+   "hospital"
+  ],
+  [
+   "Vivent Health",
+   43.0769,
+   -89.374319,
+   "clinic"
+  ],
+  [
+   "Waisman Center",
+   43.078571,
+   -89.433783,
+   "clinic"
+  ],
+  [
+   "William S. Middleton Memorial Veterans Hospital",
+   43.074223,
+   -89.431463,
+   "hospital"
+  ]
+ ],
+ "stations": [
+  [
+   "Fire Station No 3",
+   43.083546,
+   -89.363411,
+   "fire_station"
+  ],
+  [
+   "Fire Station No 9",
+   43.068485,
+   -89.450653,
+   "fire_station"
+  ],
+  [
+   "Madison Fire Station No. 1",
+   43.073695,
+   -89.390095,
+   "fire_station"
+  ],
+  [
+   "Madison Fire Station No. 4",
+   43.068486,
+   -89.411208,
+   "fire_station"
+  ],
+  [
+   "Ryan Brothers Ambulance Service",
+   43.057591,
+   -89.399909,
+   "ems_station"
+  ],
+  [
+   "Shorewood Hills Fire Station",
+   43.078189,
+   -89.443507,
+   "fire_station"
+  ]
+ ],
+ "venues": [
+  [
+   "Breese Stevens Field",
+   43.083277,
+   -89.373116
+  ],
+  [
+   "Camp Randall Stadium",
+   43.06994,
+   -89.412753
+  ],
+  [
+   "Kohl Center",
+   43.069285,
+   -89.396834
+  ],
+  [
+   "LaBahn Arena",
+   43.069854,
+   -89.398653
+  ],
+  [
+   "Veterans Memorial Coliseum",
+   43.047073,
+   -89.378959
+  ],
+  [
+   "Wisconsin State Capitol",
+   43.074692,
+   -89.384166
+  ]
+ ],
+ "estimatedSpeeds": 5506,
+ "realSpeeds": 2526,
+ "bridges": 50
+}

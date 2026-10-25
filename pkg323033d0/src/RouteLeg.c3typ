@@ -1,0 +1,72 @@
+/**
+ * One contiguous drive produced by the routing engine — either a unit travelling to an
+ * incident or an ambulance travelling from the incident to a hospital.
+ *
+ * This is a computed result, not stored data, so it is a value type returned inline
+ * from {@link EmsRouter#respond} rather than an entity. It carries enough to draw the
+ * route on a map ({@link RouteLeg#geometry}), to audit it against the extracted network
+ * ({@link RouteLeg#segmentIds}), and to state honestly how much of its travel time
+ * rests on estimated rather than posted speed limits
+ * ({@link RouteLeg#estimatedSpeedSegmentCount}).
+ */
+type RouteLeg {
+
+  /**
+   * Human-readable origin of this leg, e.g. a station or incident label.
+   */
+  fromLabel: string
+
+  /**
+   * Human-readable destination of this leg.
+   */
+  toLabel: string
+
+  /**
+   * Travel time in seconds under the scenario's effective speeds, summed over the
+   * edges traversed.
+   */
+  seconds: double
+
+  /**
+   * Driven distance in metres along the road centrelines, not straight-line distance.
+   */
+  meters: double
+
+  /**
+   * The route polyline as a JSON array of `[latitude, longitude]` pairs, stitched from
+   * the traversed segments' own geometry so the drawn line follows the actual road
+   * rather than cutting between intersections.
+   */
+  geometry: string
+
+  /**
+   * Ids of the {@link RoadSegment} edges traversed, in travel order, so any reported
+   * time can be traced back to specific roads.
+   */
+  segmentIds: [string]
+
+  /**
+   * Distinct street names along the leg in travel order, for a readable turn list.
+   * Unnamed service roads and link ramps are omitted.
+   */
+  streets: [string]
+
+  /**
+   * How many traversed edges had their speed estimated from road class rather than
+   * read from an OpenStreetMap `maxspeed` tag. A high share means this leg's time is
+   * softer than it looks.
+   */
+  estimatedSpeedSegmentCount: int
+
+  /**
+   * Total edges traversed, the denominator for
+   * {@link RouteLeg#estimatedSpeedSegmentCount}.
+   */
+  segmentCount: int
+
+  /**
+   * How many traversed edges are tagged as bridges — the structures whose closure this
+   * project is built to evaluate.
+   */
+  bridgeCount: int
+}

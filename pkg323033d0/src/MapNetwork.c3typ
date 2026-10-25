@@ -1,0 +1,123 @@
+/**
+ * The drivable road network packaged for map rendering, plus the provenance a viewer
+ * needs in order to read the map correctly.
+ *
+ * The network is stored as directed edges — two {@link RoadSegment} rows for a two-way
+ * street — which is right for routing and wrong for drawing, since it would paint every
+ * two-way street twice. This type collapses reverse pairs back to one polyline per
+ * physical stretch of road, roughly halving what crosses the wire.
+ *
+ * The polylines travel as a single JSON string in {@link MapNetwork#linesJson} rather
+ * than as thousands of typed objects: the payload is dominated by coordinates, and a
+ * positional array avoids repeating field names tens of thousands of times.
+ */
+type MapNetwork {
+
+  /**
+   * One entry per physical road stretch, as a JSON array of positional arrays:
+   * `[roadClass, streetName, isBridge, isOneway, speedIsEstimated, speedKph,
+   * [[lat, lon], ...], congestionPercent, isClosed]`, where the flags are 1 or 0.
+   * Positional rather than keyed purely to keep the payload small.
+   *
+   * The last two entries are what the requested {@link Scenario} does to this stretch
+   * of road:
+   *
+   * - `congestionPercent` — how fast traffic moves here as a percentage of free flow,
+   *   so 100 is unaffected and 28 means traffic is crawling at just over a quarter of
+   *   normal speed. It is the product of every zone and road multiplier covering this
+   *   stretch, and deliberately EXCLUDES {@link Scenario#ambulanceSpeedFactor}: this
+   *   number describes the traffic a viewer can see, not the privileged speed an
+   *   ambulance is assumed to manage through it.
+   * - `isClosed` — 1 when the scenario removes this stretch from the graph entirely.
+   *   Closed stretches are still drawn, because a closure the viewer cannot see is
+   *   indistinguishable from a road that was never there.
+   *
+   * Under the baseline scenario every entry is `100, 0`.
+   */
+  linesJson: !string
+
+  /**
+   * Number of polylines in {@link MapNetwork#linesJson} after collapsing reverse pairs.
+   */
+  lineCount: int
+
+  /**
+   * Number of directed {@link RoadSegment} edges these polylines were built from —
+   * larger than {@link MapNetwork#lineCount} by the number of two-way streets.
+   */
+  segmentCount: int
+
+  /**
+   * Number of {@link RoadNode} intersections in the routable graph.
+   */
+  nodeCount: int
+
+  /**
+   * Directed edges tagged as bridges. Note this over-counts water crossings, since
+   * OpenStreetMap also tags railway overpasses and grade separations `bridge=yes`.
+   */
+  bridgeCount: int
+
+  /**
+   * Directed edges whose speed was estimated from road class because no `maxspeed` tag
+   * exists upstream. In this extract these outnumber the observed ones roughly two to
+   * one, which is the single most important caveat on any travel time shown.
+   */
+  estimatedSpeedCount: int
+
+  /**
+   * Directed edges whose speed came from an OpenStreetMap `maxspeed` tag.
+   */
+  observedSpeedCount: int
+
+  /**
+   * Attribution text that must be displayed wherever this data is drawn, as required by
+   * the Open Database Licence.
+   */
+  attribution: !string
+
+  /**
+   * Southern edge of the modelled core area, for fitting the initial map view.
+   */
+  bboxSouth: double
+
+  /**
+   * Northern edge of the modelled core area.
+   */
+  bboxNorth: double
+
+  /**
+   * Western edge of the modelled core area.
+   */
+  bboxWest: double
+
+  /**
+   * Eastern edge of the modelled core area.
+   */
+  bboxEast: double
+
+  /**
+   * Id of the {@link Scenario} the congestion figures in
+   * {@link MapNetwork#linesJson} were computed under. Always populated — a caller that
+   * supplied no id gets the baseline's id back rather than null, so a client can never
+   * display traffic colours without being able to say which conditions produced them.
+   */
+  scenarioId: string
+
+  /**
+   * Human-readable name of that scenario, so the client can label the view without a
+   * second fetch.
+   */
+  scenarioName: string
+
+  /**
+   * Polylines this scenario closes outright. Zero under the baseline.
+   */
+  closedLineCount: int
+
+  /**
+   * Polylines this scenario slows without closing — anything whose congestion is below
+   * free flow. Zero under the baseline.
+   */
+  slowedLineCount: int
+}

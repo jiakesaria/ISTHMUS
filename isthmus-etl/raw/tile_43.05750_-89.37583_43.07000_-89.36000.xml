@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (1306 spike-08.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <bounds minlat="43.0575000" minlon="-89.3758300" maxlat="43.0700000" maxlon="-89.3600000"/>
+ <node id="1172615674" visible="true" version="1" changeset="7392348" timestamp="2011-02-25T17:22:24Z" user="neuhausr" uid="16591" lat="43.0854131" lon="-89.3540615"/>
+ <node id="3113877637" visible="true" version="1" changeset="25887451" timestamp="2014-10-06T00:34:20Z" user="Skybunny" uid="1751737" lat="43.0526622" lon="-89.3386913"/>
+ <node id="6124068504" visible="true" version="1" changeset="65279367" timestamp="2018-12-07T20:45:00Z" user="jczaplew" uid="1479781" lat="43.0530313" lon="-89.3532608"/>
+ <node id="13749141323" visible="true" version="1" changeset="181629877" timestamp="2026-04-21T14:12:52Z" user="quincylvania" uid="4515353" lat="43.0522136" lon="-89.3458761"/>
+ <node id="13749141324" visible="true" version="1" changeset="181629877" timestamp="2026-04-21T14:12:52Z" user="quincylvania" uid="4515353" lat="43.0532302" lon="-89.3400077"/>
+ <node id="13749141325" visible="true" version="1" changeset="181629877" timestamp="2026-04-21T14:12:52Z" user="quincylvania" uid="4515353" lat="43.0533399" lon="-89.3427458"/>
+ <node id="13749141326" visible="true" version="1" changeset="181629877" timestamp="2026-04-21T14:12:52Z" user="quincylvania" uid="4515353" lat="43.0599120" lon="-89.3617303"/>
+ <node id="13749141327" visible="true" version="1" changeset="181629877" timestamp="2026-04-21T14:12:52Z" user="quincylvania" uid="4515353" lat="43.0758741" lon="-89.3519259"/>
+ <node id="13749141328" visible="true" version="1" changeset="181629877" timestamp="2026-04-21T14:12:52Z" user="quincylvania" uid="4515353" lat="43.0847105" lon="-89.3531546"/>
+ <node id="13750497493" visible="true" version="1" changeset="181644680" timestamp="2026-04-21T20:31:00Z" user="quincylvania" uid="4515353" lat="43.0674026" lon="-89.3619141"/>
+ <node id="13750497494" visible="true" version="1" changeset="181644680" timestamp="2026-04-21T20:31:00Z" user="quincylvania" uid="4515353" lat="43.0636573" lon="-89.3635817"/>
+ <node id="13750497495" visible="true" version="1" changeset="181644680" timestamp="2026-04-21T20:31:00Z" user="quincylvania" uid="4515353" lat="43.0804177" lon="-89.3514996"/>
+ <node id="13750497496" visible="true" version="1" changeset="181644680" timestamp="2026-04-21T20:31:00Z" user="quincylvania" uid="4515353" lat="43.0781459" lon="-89.3511763"/>
+ <way id="653456005" visible="true" version="4" changeset="189784187" timestamp="2026-09-30T16:36:46Z" user="Tuwewanzi" uid="23951827">
+  <nd ref="1172615674"/>
+  <nd ref="13749141328"/>
+  <nd ref="13750497495"/>
+  <nd ref="13750497496"/>
+  <nd ref="13749141327"/>
+  <nd ref="13750497493"/>
+  <nd ref="13750497494"/>
+  <nd ref="13749141326"/>
+  <nd ref="6124068504"/>
+  <nd ref="13749141323"/>
+  <nd ref="13749141325"/>
+  <nd ref="13749141324"/>
+  <nd ref="3113877637"/>
+  <tag k="canoe" v="yes"/>
+  <tag k="name" v="Yahara River"/>
+  <tag k="name:en" v="Yahara River"/>
+  <tag k="name:es" v="Río Yahara"/>
+  <tag k="tidal" v="no"/>
+  <tag k="waterbody:name" v="Lake Monona"/>
+  <tag k="waterbody:name:en" v="Lake Monona"/>
+  <tag k="waterbody:name:win" v="Tchee-ho-bo-kee-xa kay-te-la"/>
+  <tag k="waterway" v="flowline"/>
+ </way>
+ <relation id="3869811" visible="true" version="40" changeset="183322672" timestamp="2026-05-28T19:56:50Z" user="quincylvania" uid="4515353">
+  <member type="node" ref="3007637868" role="mouth"/>
+  <member type="way" ref="1502227128" role="side_stream"/>
+  <member type="way" ref="446853330" role="side_stream"/>
+  <member type="way" ref="1502227126" role="main_stream"/>
+  <member type="way" ref="1502227130" role="side_stream"/>
+  <member type="way" ref="1502227129" role="side_stream"/>
+  <member type="way" ref="306463362" role="main_stream"/>
+  <member type="way" ref="1502227132" role="main_stream"/>
+  <member type="way" ref="653456005" role="main_stream"/>
+  <member type="way" ref="468220461" role="main_stream"/>
+  <member type="way" ref="416485471" role="main_stream"/>
+  <member type="way" ref="1013601754" role="main_stream"/>
+  <member type="way" ref="1502227090" role="side_stream"/>
+  <member type="way" ref="164272083" role="side_stream"/>
+  <member type="way" ref="1502227089" role="side_stream"/>
+  <member type="way" ref="653455813" role="main_stream"/>
+  <member type="way" ref="23813460" role="main_stream"/>
+  <member type="way" ref="28729833" role="main_stream"/>
+  <member type="way" ref="1524165275" role="main_stream"/>
+  <member type="way" ref="1524165277" role="main_stream"/>
+  <member type="way" ref="1524165276" role="main_stream"/>
+  <member type="way" ref="1524165274" role="main_stream"/>
+  <member type="way" ref="433221187" role="main_stream"/>
+  <member type="way" ref="28710420" role="main_stream"/>
+  <member type="way" ref="1524165288" role="main_stream"/>
+  <member type="way" ref="500436721" role="main_stream"/>
+  <member type="way" ref="500436723" role="main_stream"/>
+  <member type="way" ref="1484271364" role="side_stream"/>
+  <member type="way" ref="306463364" role="side_stream"/>
+  <member type="way" ref="856993533" role="side_stream"/>
+  <member type="way" ref="1502227127" role="side_stream"/>
+  <member type="way" ref="856993534" role="main_stream"/>
+  <member type="way" ref="23604633" role="main_stream"/>
+  <member type="way" ref="1502227097" role="side_stream"/>
+  <member type="way" ref="856993540" role="side_stream"/>
+  <member type="way" ref="1502227098" role="side_stream"/>
+  <member type="way" ref="856993541" role="main_stream"/>
+  <member type="way" ref="306463526" role="main_stream"/>
+  <member type="way" ref="1501829462" role="side_stream"/>
+  <member type="way" ref="1502255931" role="side_stream"/>
+  <member type="way" ref="1502255916" role="side_stream"/>
+  <member type="way" ref="1502255915" role="side_stream"/>
+  <member type="way" ref="23705530" role="main_stream"/>
+  <member type="way" ref="1501823218" role="main_stream"/>
+  <member type="way" ref="1501823217" role="main_stream"/>
+  <member type="way" ref="1501823220" role="main_stream"/>
+  <member type="way" ref="22821472" role="main_stream"/>
+  <member type="way" ref="1501823210" role="main_stream"/>
+  <member type="way" ref="280835744" role="main_stream"/>
+  <member type="way" ref="1484271359" role="main_stream"/>
+  <member type="way" ref="1484271363" role="main_stream"/>
+  <member type="way" ref="1484271362" role="main_stream"/>
+  <member type="way" ref="1484271360" role="main_stream"/>
+  <member type="way" ref="1484271361" role="main_stream"/>
+  <member type="way" ref="1484271356" role="main_stream"/>
+  <member type="way" ref="1484271358" role="main_stream"/>
+  <member type="way" ref="1484271357" role="main_stream"/>
+  <member type="way" ref="1484271355" role="main_stream"/>
+  <member type="way" ref="1484271355" role="main_stream"/>
+  <member type="way" ref="1484271357" role="main_stream"/>
+  <member type="way" ref="1484271358" role="main_stream"/>
+  <member type="way" ref="1484271356" role="main_stream"/>
+  <member type="way" ref="1484271361" role="main_stream"/>
+  <member type="way" ref="1484271360" role="main_stream"/>
+  <member type="way" ref="1484271362" role="main_stream"/>
+  <member type="way" ref="1484271363" role="main_stream"/>
+  <member type="way" ref="1484271359" role="main_stream"/>
+  <member type="way" ref="1501823206" role="side_stream"/>
+  <member type="way" ref="1501823219" role="side_stream"/>
+  <member type="way" ref="1501823214" role="side_stream"/>
+  <member type="way" ref="1502227103" role="main_stream"/>
+  <member type="way" ref="1502227104" role="main_stream"/>
+  <member type="way" ref="1502227105" role="main_stream"/>
+  <member type="way" ref="1502227088" role="main_stream"/>
+  <member type="way" ref="1502227099" role="main_stream"/>
+  <member type="way" ref="1502227100" role="main_stream"/>
+  <member type="way" ref="1502227096" role="main_stream"/>
+  <member type="way" ref="1502255918" role="main_stream"/>
+  <member type="way" ref="1502255919" role="main_stream"/>
+  <member type="way" ref="1502227116" role="main_stream"/>
+  <member type="way" ref="1502227144" role="main_stream"/>
+  <member type="way" ref="1502227131" role="main_stream"/>
+  <tag k="destination" v="Rock River"/>
+  <tag k="destination:lang:es" v="Río Rock"/>
+  <tag k="gnis:feature_id" v="1577073"/>
+  <tag k="name" v="Yahara River"/>
+  <tag k="name:es" v="Río Yahara"/>
+  <tag k="type" v="waterway"/>
+  <tag k="waterway" v="river"/>
+  <tag k="wikidata" v="Q3571305"/>
+  <tag k="wikipedia" v="en:Yahara River"/>
+ </relation>
+</osm>

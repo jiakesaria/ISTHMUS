@@ -1,0 +1,284 @@
+/*
+ * Copyright 2009-2026 C3 AI (www.c3.ai). All Rights Reserved.
+ * Confidential and Proprietary C3 Materials.
+ * This material, including without limitation any software, is the confidential trade secret and proprietary
+ * information of C3 and its licensors. Reproduction, use and/or distribution of this material in any form is
+ * strictly prohibited except as set forth in a written license agreement with C3 and/or its authorized distributors.
+ * This material may be covered by one or more patents or pending patent applications.
+ */
+
+/*
+ * The "night ops" control-room skin.
+ *
+ * Deliberately a hand-written stylesheet rather than design-system tokens: this
+ * surface is one full-bleed map with glass instruments floating on top of it, so it
+ * needs a dark palette, a glass recipe and an instrument typeface that the light
+ * `--c3-style-basic-*` vocabulary does not provide. Everything the design system
+ * *does* cover (buttons, switches, dialogs on the other pages) still uses it.
+ *
+ * Palette discipline is the whole point. There is exactly ONE accent (amber) plus
+ * the three traffic states (clear / slow / blocked) and a neutral grey. Nothing in
+ * this file may add a fourth hue — restraint is what stops a control room looking
+ * like a video game.
+ */
+
+.ops-root {
+  /* --- the only colours in this design --- */
+  --ops-bg: #070d16; /* near-black, matches the MapLibre canvas background */
+  --ops-accent: #ffb020; /* amber: the single accent, used for "the system is telling you something" */
+  --ops-clear: #2ee6a8; /* traffic: moving freely */
+  --ops-slow: #e8b23a; /* traffic: slower than normal */
+  --ops-blocked: #ff4d4d; /* traffic: stopped or closed */
+  --ops-neutral: #58667a; /* traffic: no data */
+
+  /* --- glass --- */
+  --ops-glass: rgba(9, 16, 27, 0.72);
+  --ops-glass-edge: rgba(255, 255, 255, 0.09);
+  --ops-fg: #e6ecf4;
+  --ops-fg-dim: #94a3b5;
+  --ops-fg-faint: #6b7a8d;
+
+  /*
+   * No mono webfont is vendored in this package and installing one mid-demo is a
+   * needless risk, so the instrument face is the platform's own mono stack. The
+   * part that actually makes numbers read like a readout is `tabular-nums` below,
+   * which keeps digits from shifting width as a count-up animates.
+   */
+  --ops-mono: ui-monospace, 'SF Mono', 'JetBrains Mono', 'IBM Plex Mono', 'Menlo', 'Consolas', monospace;
+
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: var(--ops-bg);
+  color: var(--ops-fg);
+  font-feature-settings: 'cv05' 1;
+}
+
+/*
+ * 300 ms on every colour change, set once here instead of per-component. Scoped to
+ * colour properties only: a blanket `transition: all` would also animate layout and
+ * make panels visibly slide on mount.
+ */
+.ops-root *,
+.ops-root *::before,
+.ops-root *::after {
+  transition:
+    color 300ms ease,
+    background-color 300ms ease,
+    border-color 300ms ease,
+    opacity 300ms ease,
+    box-shadow 300ms ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ops-root *,
+  .ops-root *::before,
+  .ops-root *::after {
+    transition: none;
+  }
+}
+
+/* --- glass panels: thin-bordered instruments floating over the map --- */
+
+.ops-panel {
+  background: var(--ops-glass);
+  border: 1px solid var(--ops-glass-edge);
+  border-radius: 3px;
+  backdrop-filter: blur(16px) saturate(1.15);
+  -webkit-backdrop-filter: blur(16px) saturate(1.15);
+  box-shadow:
+    0 1px 0 0 rgba(255, 255, 255, 0.04) inset,
+    0 18px 44px -18px rgba(0, 0, 0, 0.85);
+}
+
+/* --- type --- */
+
+/*
+ * Numbers that look like instrument readouts. `tabular-nums` is the load-bearing
+ * declaration: without it a counting animation jitters as digit widths change.
+ */
+.ops-num {
+  font-family: var(--ops-mono);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum' 1;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+.ops-label {
+  font-size: 9.5px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ops-fg-faint);
+}
+
+.ops-wordmark {
+  font-family: var(--ops-mono);
+  font-weight: 700;
+  letter-spacing: 0.34em;
+  font-size: 15px;
+  color: var(--ops-fg);
+}
+
+/* --- the traffic legend: a swatch that needs no explaining --- */
+
+.ops-swatch {
+  width: 18px;
+  height: 3px;
+  border-radius: 2px;
+  flex: none;
+  /* The glow mirrors how the roads themselves are drawn, so the key matches the map. */
+  box-shadow: 0 0 7px -1px currentColor;
+  background: currentColor;
+}
+
+/* --- the conditions switch --- */
+
+.ops-switch {
+  display: flex;
+  gap: 2px;
+  padding: 2px;
+  border: 1px solid var(--ops-glass-edge);
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+/* Dimmed, not disabled: the control stays where it is and keeps its size, so a
+ * re-solve never makes the panel reflow under the pointer. */
+.ops-switch--busy {
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+.ops-switch__opt {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 9px;
+  border-radius: 2px;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  color: var(--ops-fg-faint);
+  background: transparent;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.ops-switch__opt:hover {
+  color: var(--ops-fg-dim);
+}
+
+.ops-switch__opt--on {
+  background: rgba(255, 255, 255, 0.07);
+  box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.05) inset;
+}
+
+.ops-switch__dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 999px;
+  flex: none;
+  background: var(--ops-fg-faint);
+}
+
+/* --- the alert rail: the one place the room is allowed to raise its voice --- */
+
+/*
+ * A hairline of blocked-red along the top of the viewport whenever something is
+ * closed. It is the only element that appears unprompted, which is what keeps it
+ * meaningful — a control room that is always flashing is a control room nobody reads.
+ */
+.ops-alert-rail {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--ops-blocked) 18%,
+    var(--ops-blocked) 82%,
+    transparent
+  );
+  box-shadow: 0 0 18px 1px rgba(255, 77, 77, 0.55);
+  animation: ops-rail-breathe 3.4s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 650;
+}
+
+@keyframes ops-rail-breathe {
+  0%,
+  100% {
+    opacity: 0.45;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* The reveal: a panel that has just changed what it says earns one soft lift. */
+.ops-reveal {
+  animation: ops-reveal-in 520ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes ops-reveal-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ops-alert-rail {
+    animation: none;
+    opacity: 0.9;
+  }
+
+  .ops-reveal {
+    animation: none;
+  }
+}
+
+/* --- the "is this real?" chip --- */
+
+.ops-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 8px;
+  border-radius: 999px;
+  border: 1px solid var(--ops-glass-edge);
+  background: rgba(255, 255, 255, 0.04);
+  font-size: 10.5px;
+  letter-spacing: 0.04em;
+  color: var(--ops-fg-dim);
+  cursor: pointer;
+}
+
+.ops-chip:hover {
+  color: var(--ops-fg);
+  border-color: rgba(255, 176, 32, 0.45);
+}
+
+.ops-chip__dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 999px;
+  background: var(--ops-accent);
+  flex: none;
+}
+
+/* --- a hairline rule used to separate instrument rows --- */
+
+.ops-rule {
+  height: 1px;
+  background: linear-gradient(90deg, var(--ops-glass-edge), transparent);
+  border: 0;
+}

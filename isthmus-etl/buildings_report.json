@@ -1,0 +1,85 @@
+{
+  "tiles": 24,
+  "stats": {
+    "building_ways_seen": 16082,
+    "emitted": 9959,
+    "file_bytes": 5247651,
+    "height_from_default": 8254,
+    "height_from_levels": 1691,
+    "height_from_tag": 14,
+    "landmarks": 16,
+    "multipolygon_buildings_skipped": 35,
+    "named": 852,
+    "skipped_kind": 44,
+    "skipped_outside_core": 4925,
+    "skipped_small": 1154,
+    "vertices_in": 102421,
+    "vertices_out": 84663
+  },
+  "top_kinds": {
+    "house": 3822,
+    "yes": 3406,
+    "apartments": 1182,
+    "detached": 483,
+    "garage": 354,
+    "retail": 149,
+    "university": 127,
+    "residential": 80,
+    "dormitory": 71,
+    "commercial": 67,
+    "office": 47,
+    "industrial": 19
+  },
+  "tallest": [
+    {
+      "name": "Wisconsin State Capitol",
+      "h": 86.6,
+      "est": false
+    },
+    {
+      "name": "Van Hise Hall",
+      "h": 74.0,
+      "est": false
+    },
+    {
+      "name": "Engineering Research Building",
+      "h": 56.0,
+      "est": false
+    },
+    {
+      "name": "Wisconsin Alumni Research Foundation Office Building",
+      "h": 55.0,
+      "est": false
+    },
+    {
+      "name": "Atmospheric & Oceanic Sciences",
+      "h": 54.9,
+      "est": false
+    },
+    {
+      "name": "Wisconsin Department of Health Services",
+      "h": 53.9,
+      "est": false
+    },
+    {
+      "name": "Capitol Centre Apartments",
+      "h": 52.8,
+      "est": true
+    },
+    {
+      "name": null,
+      "h": 52.8,
+      "est": true
+    },
+    {
+      "name": "University Square",
+      "h": 50.0,
+      "est": false
+    },
+    {
+      "name": "Constellation",
+      "h": 48.2,
+      "est": false
+    }
+  ]
+}

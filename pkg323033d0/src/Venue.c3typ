@@ -1,0 +1,73 @@
+/**
+ * A large gathering place or civic landmark inside the ISTHMUS study area.
+ *
+ * Venues are the drivers of the game-day scenarios this project exists to simulate.
+ * Their value is positional: Camp Randall Stadium sits roughly 1.5 km from UW Health
+ * University Hospital, and the Kohl Center sits on the South Park Street corridor
+ * directly between Meriter and St. Mary's — so crowd egress from either venue degrades
+ * the exact roads an ambulance needs. A later scenario layer reads these coordinates
+ * to generate a congestion field by distance decay, rather than having congestion
+ * multipliers authored by hand.
+ *
+ * The Wisconsin State Capitol is included as a civic landmark and orientation anchor
+ * rather than an event generator.
+ */
+entity type Venue schema name 'ISTH_VENUE' {
+
+  /**
+   * WGS84 latitude of the venue (footprint centroid for stadiums and arenas).
+   */
+  latitude: !double
+
+  /**
+   * WGS84 longitude of the venue (footprint centroid for stadiums and arenas).
+   */
+  longitude: !double
+
+  /**
+   * The graph vertex nearest the venue. Large footprints snap from their centroid, so
+   * expect a larger {@link Venue#snapDistanceMeters} here than for a small building —
+   * the centroid of Camp Randall is the middle of the field, not a gate.
+   */
+  nearestNode: RoadNode
+
+  /**
+   * Metres from the venue centroid to {@link Venue#nearestNode}.
+   */
+  snapDistanceMeters: double
+
+  /**
+   * "venue" for an events space that can generate a crowd, or "landmark" for a civic
+   * reference point such as the State Capitol.
+   */
+  venueKind: string
+
+  /**
+   * Seated capacity. **Null after an OpenStreetMap-only load** — capacity is not
+   * reliably tagged upstream, and attendance is the single most important input to a
+   * game-day congestion model, so it must not be guessed. Populate from the venue
+   * operator or UW Athletics and record the origin in {@link Venue#capacitySource}.
+   */
+  capacity: int
+
+  /**
+   * Names the authority that supplied {@link Venue#capacity}. Null while capacity is
+   * unpopulated.
+   */
+  capacitySource: string
+
+  /**
+   * Whether the upstream OpenStreetMap object was a node, way or relation.
+   */
+  osmType: string
+
+  /**
+   * Upstream OpenStreetMap object id, for provenance and future merges.
+   */
+  osmId: string
+
+  /**
+   * Provenance string, e.g. "OpenStreetMap way/12345".
+   */
+  source: !string
+}

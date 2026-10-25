@@ -1,0 +1,52 @@
+/**
+ * A change to one hospital's ability to receive patients within a single
+ * {@link Scenario} — the "hospital is full" condition.
+ *
+ * This matters because it changes the *destination set* rather than the road graph, and
+ * so exercises a different failure mode than a closure does: when the nearest emergency
+ * department diverts, every incident near it must travel to the next-nearest one, and
+ * the roads that suddenly become critical are different roads. Modelling diversion as
+ * an overlay keeps {@link Hospital} itself a faithful record of what OpenStreetMap
+ * published.
+ */
+entity type ScenarioHospitalOverlay schema name 'ISTH_SCN_HOSP' {
+
+  /**
+   * The scenario this overlay belongs to; inverse of
+   * {@link Scenario#hospitalOverlays}.
+   */
+  scenario: !Scenario
+
+  /**
+   * The facility whose availability changes. Only facilities with
+   * {@link Hospital#isEmergencyDestination} true are meaningful targets, since the
+   * others were never ambulance destinations to begin with.
+   */
+  hospital: !Hospital
+
+  /**
+   * When true this hospital is removed from the candidate destination set for the
+   * scenario, forcing transport to the next-reachable emergency department.
+   */
+  isDiverting: boolean
+
+  /**
+   * Estimated emergency-department wait on arrival, in minutes. Reported alongside
+   * travel time so a destination choice can account for door-to-doctor delay, not just
+   * driving. Null unless the scenario deliberately sets it; this model loads no real
+   * wait-time feed.
+   */
+  edWaitMinutes: double
+
+  /**
+   * Why this facility is constrained, e.g. "trauma bays saturated by mass-casualty
+   * incident".
+   */
+  reason: string
+
+  /**
+   * Origin of this overlay; hypothetical surge conditions must be labelled as
+   * constructed, not observed.
+   */
+  source: !string
+}

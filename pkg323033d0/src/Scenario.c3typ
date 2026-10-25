@@ -1,0 +1,78 @@
+/**
+ * A named set of conditions the road network is evaluated under.
+ *
+ * Scenarios are the reason ISTHMUS exists: the question "which road or bridge matters
+ * most to ambulance response" can only be answered by comparing a degraded network
+ * against an undegraded one. To make that comparison honest, the extracted network in
+ * {@link RoadSegment} is treated as **immutable** and never edited in place. A scenario
+ * instead supplies *overlays* — {@link Scenario#roadOverlays} for closures and per-road
+ * slowdowns, {@link Scenario#zoneOverlays} for area congestion, and
+ * {@link Scenario#hospitalOverlays} for diversion — and routing resolves them into an
+ * effective speed at query time.
+ *
+ * Critically, the ideal "nothing goes wrong" baseline is itself a Scenario row
+ * ({@link Scenario#isBaseline}) carrying zero overlays, not a null special case. Every
+ * routing call therefore takes a scenario id from the very first version, so adding
+ * game-day or storm conditions later is purely additive and changes no routing code.
+ */
+entity type Scenario schema name 'ISTH_SCENARIO' {
+
+  /**
+   * What this scenario represents and what it is meant to demonstrate.
+   */
+  description: string
+
+  /**
+   * Coarse family this scenario belongs to — "baseline", "gameday", "storm",
+   * "gameday_storm", "sector_traffic" or "hospital_surge". Left a free string rather
+   * than an enum so a new scenario family never requires a schema change.
+   */
+  scenarioKind: string
+
+  /**
+   * True for the single undegraded reference scenario that all others are compared
+   * against. Exactly one row should carry this flag; routing falls back to it when a
+   * caller supplies no scenario id.
+   */
+  isBaseline: boolean
+
+  /**
+   * Multiplier applied to {@link RoadSegment#freeFlowSpeedKph} to represent an
+   * emergency vehicle running lights and siren, which legally exceeds posted limits.
+   *
+   * **This value is an estimate, not a measurement.** No observed Madison Fire
+   * Department response telemetry is loaded in this model, so travel times derived with
+   * it are relative rather than absolute: they are trustworthy for ranking which road
+   * matters most, and should not be quoted as predicted minutes-on-scene. A factor of
+   * 1.0 disables the adjustment and routes at ordinary free-flow speed.
+   */
+  ambulanceSpeedFactor: double
+
+  /**
+   * Where this scenario's parameters came from, and explicitly which of them are
+   * synthesized. Game-day and storm conditions have no upstream open dataset, so they
+   * are constructed by this project and must be labelled as such wherever shown.
+   */
+  source: !string
+
+  /**
+   * Any caveat a reader needs in order to interpret results from this scenario
+   * correctly.
+   */
+  notes: string
+
+  /**
+   * Per-road closures and slowdowns active in this scenario.
+   */
+  roadOverlays: [ScenarioRoadOverlay](scenario)
+
+  /**
+   * Area-wide congestion fields active in this scenario.
+   */
+  zoneOverlays: [ScenarioZoneOverlay](scenario)
+
+  /**
+   * Hospital availability changes active in this scenario.
+   */
+  hospitalOverlays: [ScenarioHospitalOverlay](scenario)
+}

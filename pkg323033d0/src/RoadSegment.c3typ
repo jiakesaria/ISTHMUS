@@ -1,0 +1,133 @@
+/**
+ * One **directed** edge of the ISTHMUS road graph, spanning two adjacent
+ * {@link RoadNode} intersections and carrying the real OpenStreetMap polyline
+ * between them.
+ *
+ * Directedness is deliberate and load-bearing. A two-way street produces two
+ * RoadSegment rows (one per direction); a one-way street produces one. Madison's
+ * downtown is full of one-way pairs (the Gorham St / E Johnson St couplet runs
+ * straight through this bounding box), and scenario work later needs to close a
+ * single direction of travel. Neither is expressible on an undirected edge, and
+ * retrofitting direction onto an undirected graph is a data migration rather than
+ * a code change.
+ *
+ * Travel cost is never read directly off this type by the scenario engine. Instead
+ * {@link RoadSegment#freeFlowSpeedKph} is the *unperturbed* baseline, and scenario
+ * overlays multiply it down (or remove the edge entirely) at query time, so the base
+ * network is immutable across every scenario.
+ */
+entity type RoadSegment schema name 'ISTH_ROAD_SEGMENT' {
+
+  /**
+   * Intersection this segment leaves. Travel is permitted only from here toward
+   * {@link RoadSegment#toNode}.
+   */
+  fromNode: !RoadNode
+
+  /**
+   * Intersection this segment arrives at.
+   */
+  toNode: !RoadNode
+
+  /**
+   * Street name from the OpenStreetMap `name` tag, e.g. "University Avenue". Null for
+   * unnamed ways (alleys, service drives, some ramps) — OSM genuinely lacks a name for
+   * these rather than this being a load failure.
+   */
+  streetName: string
+
+  /**
+   * Segment length in metres, integrated with the haversine formula along the *full*
+   * OpenStreetMap polyline rather than straight-line between endpoints. Curved roads
+   * (John Nolen Drive, the Campus Drive ramps) are materially longer than their chord,
+   * so straight-line distance would systematically understate travel time.
+   */
+  lengthMeters: !double
+
+  /**
+   * Unimpeded travel speed in km/h. Taken from the OpenStreetMap `maxspeed` tag when
+   * one is present; otherwise a per-road-class US urban default is applied. Always
+   * check {@link RoadSegment#speedIsEstimated} before treating this as observed fact.
+   */
+  freeFlowSpeedKph: !double
+
+  /**
+   * Derived baseline traversal time in seconds — `lengthMeters / (freeFlowSpeedKph * 1000 / 3600)`.
+   * Computed once during extraction so every consumer agrees on it. This is the
+   * *free-flow* time only; scenario congestion is applied on top at query time and is
+   * never written back here.
+   */
+  freeFlowTravelTimeSeconds: !double
+
+  /**
+   * OpenStreetMap `highway` tag: one of motorway, trunk, primary, secondary, tertiary,
+   * unclassified, residential, living_street, service, or the corresponding `_link`
+   * ramp classes. Drives the speed default above and, later, how strongly a congestion
+   * overlay should bite (arterials clog differently than residential streets).
+   * Deliberately a free string rather than an enum so an unanticipated upstream tag
+   * value cannot fail the whole data load.
+   */
+  roadClass: string
+
+  /**
+   * Lane count from the OpenStreetMap `lanes` tag; null when untagged. Reserved for
+   * capacity-aware congestion modeling.
+   */
+  laneCount: int
+
+  /**
+   * True when the parent OpenStreetMap way was tagged one-way (or is a roundabout or
+   * motorway, both of which imply it), meaning no reverse-direction sibling row exists.
+   */
+  isOneway: boolean
+
+  /**
+   * True when the OpenStreetMap `bridge` tag is present and not "no". Central to the
+   * ISTHMUS question of which single crossing matters most — though note this flag also
+   * catches railway overpasses, so it over-counts true water crossings.
+   */
+  isBridge: boolean
+
+  /**
+   * True when the OpenStreetMap `tunnel` tag is present and not "no".
+   */
+  isTunnel: boolean
+
+  /**
+   * The true road shape as a compact JSON array of `[latitude, longitude]` pairs,
+   * ordered from {@link RoadSegment#fromNode} to {@link RoadSegment#toNode}. Stored as a
+   * JSON string so the map can draw the real curve of a street instead of a chord, and
+   * so a computed route can be rendered as one continuous polyline.
+   */
+  geometry: string
+
+  /**
+   * Parent OpenStreetMap way id. One way typically splits into several segments, so this
+   * is not unique across rows — pair it with {@link RoadSegment#osmSequence}.
+   */
+  osmWayId: string
+
+  /**
+   * Zero-based index of this segment within its parent OpenStreetMap way, in the way's
+   * own node order.
+   */
+  osmSequence: int
+
+  /**
+   * True when {@link RoadSegment#freeFlowSpeedKph} was filled from a road-class default
+   * because OpenStreetMap had no `maxspeed` tag for the way. Estimated speeds are the
+   * majority in this extract and must never be presented as surveyed values.
+   */
+  speedIsEstimated: !boolean
+
+  /**
+   * Exactly where the speed came from: "osm:maxspeed" for a real tag, or
+   * "default:<roadClass>" naming the fallback rule that fired.
+   */
+  speedSource: string
+
+  /**
+   * Provenance string, e.g. "OpenStreetMap way/12345".
+   */
+  source: !string
+}

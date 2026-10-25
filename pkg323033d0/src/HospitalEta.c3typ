@@ -1,0 +1,45 @@
+/**
+ * One candidate destination hospital's travel time from an incident, under one
+ * scenario.
+ *
+ * {@link EmsRouter#respond} returns the full ranked list rather than only the winner,
+ * because the margin between first and second choice is the interesting quantity: a
+ * two-second gap means a closure that blocks the nearest hospital barely matters, while
+ * a four-minute gap means that road is load-bearing.
+ */
+type HospitalEta {
+
+  /**
+   * Id of the candidate {@link Hospital}.
+   */
+  hospitalId: string
+
+  /**
+   * Display name of the candidate hospital.
+   */
+  hospitalName: string
+
+  /**
+   * Driving time in seconds from the incident under the active scenario, or null when
+   * the hospital cannot be reached.
+   */
+  seconds: double
+
+  /**
+   * Driven distance in metres from the incident, or null when unreachable.
+   */
+  meters: double
+
+  /**
+   * False when no path exists under the active scenario — which is exactly the signal a
+   * road-closure scenario is meant to surface.
+   */
+  isReachable: boolean
+
+  /**
+   * Set when the scenario's {@link ScenarioHospitalOverlay} removes this facility from
+   * the candidate set; the row is still returned, with its reason, so the exclusion is
+   * visible rather than silent.
+   */
+  excludedReason: string
+}

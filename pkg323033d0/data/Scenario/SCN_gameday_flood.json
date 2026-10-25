@@ -1,0 +1,12 @@
+[
+ {
+  "id": "SCN_gameday_flood",
+  "name": "Post-game surge + John Nolen flooding",
+  "description": "Saturday, 6:40 PM. A Badger home game has just let out at Camp Randall and roughly 75,000 people are leaving on foot and by car at the same time. A storm over Lake Monona has pushed water across the John Nolen Drive causeway, closing the isthmus' main southern artery and forcing every one of those vehicles onto the surface streets.",
+  "scenarioKind": "gameday_storm",
+  "isBaseline": false,
+  "ambulanceSpeedFactor": 1.15,
+  "source": "Synthesized by the ISTHMUS project for demonstration. The road geometry, street name and OpenStreetMap way ids are real; the flood extent, the closure and the crowd slowdowns are MODELLED, not observed. Patterned on the August 2018 Madison storm, during which Lake Monona flooding closed lakeshore routes including John Nolen Drive.",
+  "notes": "Travel times under this scenario are comparative, not predictive. The multipliers below are assumptions chosen to represent a severe but plausible post-game evacuation; Madison publishes no open game-day traffic counts to calibrate them against. Read the RATIO against baseline, not the absolute minutes."
+ }
+]
